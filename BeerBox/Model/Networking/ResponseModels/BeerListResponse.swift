@@ -4,3 +4,8 @@
 //
 
 import Foundation
+
+struct BeerListResponse {
+    var found: Int
+    var beers: [BeerItemResponse]?
+}

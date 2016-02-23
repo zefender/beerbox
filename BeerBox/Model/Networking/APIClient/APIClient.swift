@@ -9,8 +9,10 @@
 import Foundation
 
 class APIClient {
+    private let endPoint = "https://api.untappd.com/v4"
+
     func sendRequest(request: Request, completionHandler: (NSData?, NSError?) -> Void) {
-        let urlString = "\(baseApiUrl())/\(request.method())"
+        let urlString = "\(endPoint)/\(request.method())"
         let httpRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         httpRequest.HTTPMethod = request.httpMethod().rawValue
         
@@ -20,11 +22,7 @@ class APIClient {
             print("parametersString = \(parametersString)")
             httpRequest.HTTPBody = parametersString.dataUsingEncoding(NSUTF8StringEncoding)
         }
-        
-        if request.shouldAddCookie() {
-            buildHttpCookie(httpRequest)
-        }
-        
+
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(httpRequest) { data, response, error in
@@ -40,12 +38,7 @@ class APIClient {
     func configureHttpRequest(request: NSMutableURLRequest) {
         
     }
-    
-    // To override
-    func baseApiUrl() -> String {
-        return ""
-    }
-    
+
     // To override
     func handleResponse(response: NSData?) -> NSData? {
         return nil

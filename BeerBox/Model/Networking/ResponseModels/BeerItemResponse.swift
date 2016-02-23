@@ -4,3 +4,13 @@
 //
 
 import Foundation
+
+struct nBeerItemResponse {
+    let bid: Int
+    let name: String
+    let labelImageUrl: String
+    let ABV: Int
+    let IBU: Int
+    let description: String
+    let style: String
+}

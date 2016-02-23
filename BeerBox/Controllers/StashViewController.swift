@@ -6,17 +6,36 @@
 import Foundation
 import UIKit
 
-class BoxViewController: UIViewController {
+class StashViewController: UIViewController, BeerStashViewDelegate {
     private let stashView = BeerStashView(frame: UIScreen.mainScreen().bounds)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Stash"
+
+        automaticallyAdjustsScrollViewInsets = false
+
+        stashView.delegate = self
+    }
+
+    func showStash(stash: [BeerItemResponse]) {
+        stashView.showStash(stash)
     }
 
     override func loadView() {
         view = stashView
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        stashView.setInsets(UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0))
+    }
+
+
+    func beerStashView(view: BeerStashView, didSelectItemWithIndex index: Int) {
+        let controller = BeerViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
