@@ -14,13 +14,13 @@ import CoreData
 
 extension Beer {
 
-    @NSManaged var bid: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var labelImageUrl: String?
     @NSManaged var abv: NSNumber?
-    @NSManaged var ibu: NSNumber?
+    @NSManaged var bid: NSNumber?
     @NSManaged var descr: String?
+    @NSManaged var ibu: NSNumber?
+    @NSManaged var labelImageUrl: String?
+    @NSManaged var name: String?
     @NSManaged var style: String?
-    @NSManaged var brewery: NSManagedObject?
+    @NSManaged var brewery: Brewery?
 
 }

@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct nBeerItemResponse {
+struct BeerItemResponse {
     let bid: Int
     let name: String
     let labelImageUrl: String

@@ -9,7 +9,17 @@
 import CoreData
 import MapKit
 
-enum PinKeys: String {
+enum BeerKeys: String {
+    case ABV = "abv"
+    case Id = "bid"
+    case Descr = "descr"
+    case IBU = "ibu"
+    case LabelImageUrl = "labelImageUrl"
+    case Name = "name"
+    case Style = "style"
+}
+
+enum BreweryKeys: String {
     case Identifier = "identifier"
     case Latitude = "latitude"
     case Longitude = "longitude"
@@ -18,8 +28,35 @@ enum PinKeys: String {
 class CoreDataDataSource {
     private let managedObjectContext: NSManagedObjectContext
 
+    func beerWithBeerResponseModel(model: BeerItemResponse) -> Beer {
+        let beer = NSEntityDescription.insertNewObjectForEntityForName("Beer", inManagedObjectContext: managedObjectContext)
+
+        beer.setValue(model.bid, forKey: BeerKeys.Id.rawValue)
+        beer.setValue(model.ABV, forKey: BeerKeys.ABV.rawValue)
+        beer.setValue(model.description, forKey: BeerKeys.Descr.rawValue)
+        beer.setValue(model.IBU, forKey: BeerKeys.IBU.rawValue)
+        beer.setValue(model.labelImageUrl, forKey: BeerKeys.LabelImageUrl.rawValue)
+        beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)
+        beer.setValue(model.style, forKey: BeerKeys.Style.rawValue)
+
+        return beer as! Beer
+    }
+
+    func addBeerToStash(model: BeerItemResponse) {
+        let beer = NSEntityDescription.insertNewObjectForEntityForName("Beer", inManagedObjectContext: managedObjectContext)
+        beer.setValue(model.bid, forKey: BeerKeys.Id.rawValue)
+        beer.setValue(model.ABV, forKey: BeerKeys.ABV.rawValue)
+        beer.setValue(model.description, forKey: BeerKeys.Descr.rawValue)
+        beer.setValue(model.IBU, forKey: BeerKeys.IBU.rawValue)
+        beer.setValue(model.labelImageUrl, forKey: BeerKeys.LabelImageUrl.rawValue)
+        beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)
+        beer.setValue(model.style, forKey: BeerKeys.Style.rawValue)
+
+        saveContext()
+    }
+
     init() {
-        guard let modelURL = NSBundle.mainBundle().URLForResource("VirtualTouristDataModel", withExtension: "momd") else {
+        guard let modelURL = NSBundle.mainBundle().URLForResource("BeerBoxDataModel", withExtension: "momd") else {
             fatalError("Error loading model from bundle")
         }
 

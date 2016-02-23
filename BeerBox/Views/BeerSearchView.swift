@@ -7,13 +7,14 @@ import Foundation
 import UIKit
 
 protocol BeerSearchViewDelegate: class {
-    func beerSearchView(view: BeerSearchView, didSelectIndex index: Int)
+    func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int)
 }
 
 class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     weak var delegate: BeerSearchViewDelegate?
 
-    private var beersModel: BeerListResponse!
+    private var beersModel: [Beer]!
+    private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
 
     private let tableView: UITableView = UITableView()
     private let searchView: UISearchBar = UISearchBar()
@@ -29,21 +30,29 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         addSubview(searchView)
     }
 
-    func showBeers(beers: BeerListResponse) {
+    func showBeers(beers: [Beer], photoLoader: (String, (UIImage?) -> ()) -> ()) {
+        self.photoLoader = photoLoader
         beersModel = beers
         tableView.reloadData()
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return beersModel.beers?.count ?? 0
+        return beersModel?.count ?? 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(BeerTableViewCell.cellId) as! BeerTableViewCell
 
-        if let beer = beersModel.beers?[indexPath.row] {
-            cell.setName(beer.name)
-            cell.setDesc(beer.description)
+        if let beer = beersModel?[indexPath.row] {
+            cell.setName(beer.name!)
+            cell.setDesc(beer.descr!)
+
+            photoLoader(beer.labelImageUrl!) {
+                (image) in
+                if let image = image {
+                    cell.setBeerImage(image)
+                }
+            }
         }
 
         return cell
@@ -52,40 +61,30 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
-        delegate?.beerSearchView(self, didSelectIndex: indexPath.row)
+//        delegate?.beerSearchView(self, didSelectIndex: indexPath.row)
     }
 
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let more = UITableViewRowAction(style: .Normal, title: "More") {
+        let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
             action, index in
-
+            self.delegate?.beerSearchView(self, didTriggerStachActionForIndex: indexPath.row)
         }
 
-        more.backgroundColor = UIColor.lightGrayColor()
+        addToStash.backgroundColor = UIColor.orangeColor()
 
-        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") {
-            action, index in
-
-        }
-
-        favorite.backgroundColor = UIColor.orangeColor()
-
-        let share = UITableViewRowAction(style: .Normal, title: "Share") {
-            action, index in
-
-        }
-
-        share.backgroundColor = UIColor.blueColor()
-
-        return [share, favorite, more]
+        return [addToStash]
     }
 
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
         return true
     }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
+
 
     override func layoutSubviews() {
         super.layoutSubviews()

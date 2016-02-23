@@ -15,11 +15,11 @@ import CoreData
 extension Brewery {
 
     @NSManaged var bid: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var imageLabelUrl: String?
     @NSManaged var country: String?
+    @NSManaged var imageLabelUrl: String?
     @NSManaged var lat: NSNumber?
     @NSManaged var lon: NSNumber?
+    @NSManaged var name: String?
     @NSManaged var siteUrl: String?
     @NSManaged var beers: NSSet?
 

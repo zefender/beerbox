@@ -6,9 +6,9 @@
 import Foundation
 import UIKit
 
-class SearchViewController: UIViewController, BeerSearchViewDelegate {
+class SearchViewController: ViewController, BeerSearchViewDelegate {
     private let beerSearchView = BeerSearchView(frame: UIScreen.mainScreen().bounds)
-
+    private let beers = [Beer]()
 
     override func loadView() {
         view = beerSearchView
@@ -27,13 +27,26 @@ class SearchViewController: UIViewController, BeerSearchViewDelegate {
     }
 
     private func fetchBeers() {
-        if let path = NSBundle.mainBundle().pathForResource("beers", ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let parser = BeerListParser(data: jsonData)
-                let parsed = parser.parse() as! BeerListResponse
-                beerSearchView.showBeers(parsed)
-            } catch {
+        DataManager.instance.searchBeersWithTerm("term") {
+            (beers, error) in
+            if error.hasError {
+                self.showAlertForError(error)
+            } else if let beers = beers {
+                self.beerSearchView.showBeers(beers, photoLoader: {
+                    (url, completionHandler) -> () in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+                    DataManager.instance.loadPhotoForUrl(url) {
+                        (image, error) -> () in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+                        if error.hasError {
+                            self.showAlertForError(error)
+                        } else {
+                            completionHandler(image)
+                        }
+                    }
+                })
             }
         }
     }
@@ -55,8 +68,8 @@ class SearchViewController: UIViewController, BeerSearchViewDelegate {
 
     }
 
-    func beerSearchView(view: BeerSearchView, didSelectIndex index: Int) {
-
+    func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int) {
+//        DataManager.addBeerToStash(beer: )
     }
 
 }
