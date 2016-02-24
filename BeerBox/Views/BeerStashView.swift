@@ -16,7 +16,7 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         UICollectionViewDelegateFlowLayout {
     weak var delegate: BeerStashViewDelegate?
 
-    private var stash: [BeerItemResponse]?
+    private var stash: [BeerItem]?
 
     private lazy var stashCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -37,7 +37,7 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         addSubview(stashCollectionView)
     }
 
-    func showStash(stash: [BeerItemResponse]) {
+    func showStash(stash: [BeerItem]) {
         self.stash = stash
 
         stashCollectionView.reloadData()

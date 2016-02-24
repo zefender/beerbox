@@ -8,7 +8,7 @@ import UIKit
 
 class SearchViewController: ViewController, BeerSearchViewDelegate {
     private let beerSearchView = BeerSearchView(frame: UIScreen.mainScreen().bounds)
-    private let beers = [Beer]()
+    private var beers = [BeerItem]()
 
     override func loadView() {
         view = beerSearchView
@@ -32,6 +32,8 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
             if error.hasError {
                 self.showAlertForError(error)
             } else if let beers = beers {
+                self.beers = beers
+
                 self.beerSearchView.showBeers(beers, photoLoader: {
                     (url, completionHandler) -> () in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -59,7 +61,7 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let parser = BeerListParser(data: jsonData)
-                let parsed = parser.parse() as! BeerListResponse
+                let parsed = parser.parse() as! BeerList
                 controller.showStash(parsed.beers!)
             } catch {
             }
@@ -69,7 +71,7 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
     }
 
     func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int) {
-//        DataManager.addBeerToStash(beer: )
+        DataManager.instance.addBeerToStash(beers[index])
     }
 
 }

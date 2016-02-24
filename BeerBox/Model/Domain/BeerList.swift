@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct BeerListResponse {
+struct BeerList {
     var found: Int
-    var beers: [BeerItemResponse]?
+    var beers: [BeerItem]?
 }

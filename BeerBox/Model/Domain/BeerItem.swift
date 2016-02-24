@@ -5,12 +5,12 @@
 
 import Foundation
 
-struct BeerItemResponse {
+struct BeerItem {
     let bid: Int
     let name: String
     let labelImageUrl: String
     let ABV: Int
     let IBU: Int
-    let description: String
+    let descr: String
     let style: String
 }

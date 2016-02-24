@@ -13,26 +13,18 @@ class DataManager {
     private let apiClient = APIClient()
     private let imageStorage = ImageDataManager()
 
-    func addBeerToStash(beer: BeerItemResponse) {
+    func addBeerToStash(beer: BeerItem) {
         coreDataSource.addBeerToStash(beer)
     }
 
 
-    func searchBeersWithTerm(term: String, completionHandler: ([Beer]?, Error) -> ()) {
+    func searchBeersWithTerm(term: String, completionHandler: ([BeerItem]?, Error) -> ()) {
         if let path = NSBundle.mainBundle().pathForResource("beers", ofType: "json") {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let parsed = BeerListParser(data: jsonData).parse() as! BeerListResponse
+                let parsed = BeerListParser(data: jsonData).parse() as! BeerList
 
-                var beers = [Beer]()
-
-                if let parsedBeers = parsed.beers {
-                    for beer in parsedBeers {
-                        beers.append(coreDataSource.beerWithBeerResponseModel(beer))
-                    }
-                }
-
-                completionHandler(beers, Error(error: nil))
+                completionHandler(parsed.beers, Error(error: nil))
             } catch {
             }
         }

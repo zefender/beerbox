@@ -28,25 +28,11 @@ enum BreweryKeys: String {
 class CoreDataDataSource {
     private let managedObjectContext: NSManagedObjectContext
 
-    func beerWithBeerResponseModel(model: BeerItemResponse) -> Beer {
-        let beer = NSEntityDescription.insertNewObjectForEntityForName("Beer", inManagedObjectContext: managedObjectContext)
-
-        beer.setValue(model.bid, forKey: BeerKeys.Id.rawValue)
-        beer.setValue(model.ABV, forKey: BeerKeys.ABV.rawValue)
-        beer.setValue(model.description, forKey: BeerKeys.Descr.rawValue)
-        beer.setValue(model.IBU, forKey: BeerKeys.IBU.rawValue)
-        beer.setValue(model.labelImageUrl, forKey: BeerKeys.LabelImageUrl.rawValue)
-        beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)
-        beer.setValue(model.style, forKey: BeerKeys.Style.rawValue)
-
-        return beer as! Beer
-    }
-
-    func addBeerToStash(model: BeerItemResponse) {
+    func addBeerToStash(model: BeerItem) {
         let beer = NSEntityDescription.insertNewObjectForEntityForName("Beer", inManagedObjectContext: managedObjectContext)
         beer.setValue(model.bid, forKey: BeerKeys.Id.rawValue)
         beer.setValue(model.ABV, forKey: BeerKeys.ABV.rawValue)
-        beer.setValue(model.description, forKey: BeerKeys.Descr.rawValue)
+        beer.setValue(model.descr, forKey: BeerKeys.Descr.rawValue)
         beer.setValue(model.IBU, forKey: BeerKeys.IBU.rawValue)
         beer.setValue(model.labelImageUrl, forKey: BeerKeys.LabelImageUrl.rawValue)
         beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)

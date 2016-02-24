@@ -19,7 +19,7 @@ class StashViewController: UIViewController, BeerStashViewDelegate {
         stashView.delegate = self
     }
 
-    func showStash(stash: [BeerItemResponse]) {
+    func showStash(stash: [BeerItem]) {
         stashView.showStash(stash)
     }
 

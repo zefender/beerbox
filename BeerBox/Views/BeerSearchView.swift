@@ -13,7 +13,7 @@ protocol BeerSearchViewDelegate: class {
 class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     weak var delegate: BeerSearchViewDelegate?
 
-    private var beersModel: [Beer]!
+    private var beersModel: [BeerItem]!
     private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
 
     private let tableView: UITableView = UITableView()
@@ -30,7 +30,7 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         addSubview(searchView)
     }
 
-    func showBeers(beers: [Beer], photoLoader: (String, (UIImage?) -> ()) -> ()) {
+    func showBeers(beers: [BeerItem], photoLoader: (String, (UIImage?) -> ()) -> ()) {
         self.photoLoader = photoLoader
         beersModel = beers
         tableView.reloadData()
@@ -44,10 +44,10 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(BeerTableViewCell.cellId) as! BeerTableViewCell
 
         if let beer = beersModel?[indexPath.row] {
-            cell.setName(beer.name!)
-            cell.setDesc(beer.descr!)
+            cell.setName(beer.name)
+            cell.setDesc(beer.descr)
 
-            photoLoader(beer.labelImageUrl!) {
+            photoLoader(beer.labelImageUrl) {
                 (image) in
                 if let image = image {
                     cell.setBeerImage(image)
@@ -60,10 +60,11 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-
-//        delegate?.beerSearchView(self, didSelectIndex: indexPath.row)
     }
 
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.endEditing(true)
+    }
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
