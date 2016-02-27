@@ -30,17 +30,28 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         return collectionView
     }()
 
+    private let emptyLabel = UILabel()
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubview(stashCollectionView)
+        addSubview(emptyLabel)
+
+        emptyLabel.hidden = true
+        emptyLabel.text = "Your stash is empty."
+        emptyLabel.textAlignment = .Center
+        emptyLabel.textColor = UIColor.orangeColor()
     }
 
     func showStash(stash: [BeerItem]) {
         self.stash = stash
 
         stashCollectionView.reloadData()
+
+        stashCollectionView.hidden = stash.isEmpty
+        emptyLabel.hidden = !stash.isEmpty
     }
 
 
@@ -48,6 +59,8 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         super.layoutSubviews()
 
         stashCollectionView.frame = bounds
+        emptyLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
+        emptyLabel.center = center
     }
 
     func setInsets(insets: UIEdgeInsets) {
