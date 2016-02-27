@@ -41,6 +41,35 @@ class CoreDataDataSource {
         saveContext()
     }
 
+    func stash() -> [Beer]? {
+        let fetchRequest = NSFetchRequest(entityName: "Beer")
+
+        do {
+            let beers = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Beer]
+            return beers
+        } catch {
+            print(error)
+        }
+
+        return nil
+    }
+
+    func removeBeer(beer: BeerItem) {
+        let fetchRequest = NSFetchRequest(entityName: "Beer")
+        fetchRequest.predicate = NSPredicate(format: "bid == %d", beer.bid)
+
+        do {
+            if let beers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Beer] {
+                if let beer = beers.first {
+                    managedObjectContext.deleteObject(beer)
+                    saveContext()
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+
     init() {
         guard let modelURL = NSBundle.mainBundle().URLForResource("BeerBoxDataModel", withExtension: "momd") else {
             fatalError("Error loading model from bundle")

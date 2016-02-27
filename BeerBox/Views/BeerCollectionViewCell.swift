@@ -58,7 +58,7 @@ class BeerCollectionViewCell: UICollectionViewCell {
         beerImage.frame = CGRect(x: 0, y: descriptionLabel.bottom, width: width, height: 44)
         ibuLabel.frame = CGRect(x: 0, y: beerImage.bottom, width: width, height: 44)
         abvLabel.frame = CGRect(x: 0, y: ibuLabel.bottom, width: width, height: 44)
-        styleLabel.frame = CGRect(x: 0, y: abvLabel.bottom, width: width, height: 44)
+        styleLabel.frame = CGRect(x: 0, y: nameLabel.bottom + 8, width: width, height: 44)
     }
 
     required init?(coder aDecoder: NSCoder) {

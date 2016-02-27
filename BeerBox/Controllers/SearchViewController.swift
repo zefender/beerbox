@@ -56,18 +56,6 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
     func handleStashButtonTap(sender: AnyObject) {
         let controller = StashViewController()
         navigationController?.pushViewController(controller, animated: true)
-
-        if let path = NSBundle.mainBundle().pathForResource("beers", ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let parser = BeerListParser(data: jsonData)
-                let parsed = parser.parse() as! BeerList
-                controller.showStash(parsed.beers!)
-            } catch {
-            }
-        }
-
-
     }
 
     func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int) {

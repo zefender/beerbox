@@ -59,7 +59,11 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        if let stash = stash {
+            return stash.count
+        }
+
+        return 0
     }
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -81,7 +85,12 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(BeerCollectionViewCell.cellId, forIndexPath: indexPath) as! BeerCollectionViewCell
 
+        if let stash = stash {
+            let beer = stash[indexPath.row]
 
+            cell.setName(beer.name)
+            cell.setStyle(beer.style)
+        }
 
         return cell
     }

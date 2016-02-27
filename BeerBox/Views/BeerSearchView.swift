@@ -63,13 +63,14 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.endEditing(true)
+
     }
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
             action, index in
             self.delegate?.beerSearchView(self, didTriggerStachActionForIndex: indexPath.row)
+            self.tableView.setEditing(false, animated: true)
         }
 
         addToStash.backgroundColor = UIColor.orangeColor()

@@ -18,6 +18,22 @@ class DataManager {
     }
 
 
+    func fetchStash() -> [BeerItem]? {
+        if let stash = coreDataSource.stash() as [Beer]? {
+            return stash.map { beer in
+                return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
+                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "")
+            }
+        } else {
+            return nil
+        }
+    }
+
+
+    func removeBeerFromStash(beer: BeerItem) {
+        coreDataSource.removeBeer(beer)
+    }
+
     func searchBeersWithTerm(term: String, completionHandler: ([BeerItem]?, Error) -> ()) {
         if let path = NSBundle.mainBundle().pathForResource("beers", ofType: "json") {
             do {

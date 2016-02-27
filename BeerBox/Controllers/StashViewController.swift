@@ -6,8 +6,9 @@
 import Foundation
 import UIKit
 
-class StashViewController: UIViewController, BeerStashViewDelegate {
+class StashViewController: UIViewController, BeerStashViewDelegate, BeerViewControllerDelegate {
     private let stashView = BeerStashView(frame: UIScreen.mainScreen().bounds)
+    private var stash: [BeerItem]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,10 +18,15 @@ class StashViewController: UIViewController, BeerStashViewDelegate {
         automaticallyAdjustsScrollViewInsets = false
 
         stashView.delegate = self
+
+        reloadStash()
     }
 
-    func showStash(stash: [BeerItem]) {
-        stashView.showStash(stash)
+    private func reloadStash() {
+        if let beers = DataManager.instance.fetchStash() {
+            stash = beers
+            stashView.showStash(beers)
+        }
     }
 
     override func loadView() {
@@ -33,9 +39,19 @@ class StashViewController: UIViewController, BeerStashViewDelegate {
         stashView.setInsets(UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0))
     }
 
+    func beerViewControllerDidDeleteBeerFromStash(controller: BeerViewController) {
+        reloadStash()
+    }
+
 
     func beerStashView(view: BeerStashView, didSelectItemWithIndex index: Int) {
-        let controller = BeerViewController()
-        navigationController?.pushViewController(controller, animated: true)
+        if let stash = stash {
+            let controller = BeerViewController()
+            controller.delegate = self
+            let beer = stash[index]
+            controller.beer = beer
+
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
