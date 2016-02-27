@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/beers.json" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Error.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/DataManager.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BreweryItem.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerItem.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerList.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/BeerBoxDataModel.xcdatamodeld/BeerBoxDataModel.xcdatamodel" isTestSource="false" />

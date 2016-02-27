@@ -20,9 +20,9 @@ enum BeerKeys: String {
 }
 
 enum BreweryKeys: String {
-    case Identifier = "identifier"
-    case Latitude = "latitude"
-    case Longitude = "longitude"
+    case Id = "bid"
+    case Latitude = "lat"
+    case Longitude = "lon"
 }
 
 class CoreDataDataSource {
@@ -62,6 +62,46 @@ class CoreDataDataSource {
             if let beers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Beer] {
                 if let beer = beers.first {
                     managedObjectContext.deleteObject(beer)
+                    saveContext()
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    func breweryById(id: Int) -> Brewery? {
+        let fetchRequest = NSFetchRequest(entityName: "Brewery")
+        fetchRequest.predicate = NSPredicate(format: "bid == %d", id)
+
+        do {
+            if let brewers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
+                if let brewery = brewers.first {
+                    return brewery
+                }
+            }
+        } catch {
+            print(error)
+        }
+
+        return nil
+    }
+
+    func addBrewery(brewery: BreweryItem) {
+        let breweryMO = NSEntityDescription.insertNewObjectForEntityForName("Brewery", inManagedObjectContext: managedObjectContext)
+        breweryMO.setValue(brewery.bid, forKey: BreweryKeys.Id.rawValue)
+
+        saveContext()
+    }
+
+    func removeBreweryById(id: Int) {
+        let fetchRequest = NSFetchRequest(entityName: "Brewery")
+        fetchRequest.predicate = NSPredicate(format: "bid == %d", id)
+
+        do {
+            if let results = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
+                if let item = results.first {
+                    managedObjectContext.deleteObject(item)
                     saveContext()
                 }
             }
