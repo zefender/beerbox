@@ -42,7 +42,6 @@ class BeerViewController: UIViewController, BeerViewDelegate {
         super.viewDidLoad()
 
         beerView.setName("Punk IPA")
-//        beerView.set
     }
 
 

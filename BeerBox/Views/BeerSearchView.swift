@@ -17,7 +17,6 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
 
     private let tableView: UITableView = UITableView()
-    private let searchView: UISearchBar = UISearchBar()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,13 +28,16 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.separatorStyle = .None
 
         addSubview(tableView)
-        addSubview(searchView)
     }
 
     func showBeers(beers: [BeerItem], photoLoader: (String, (UIImage?) -> ()) -> ()) {
         self.photoLoader = photoLoader
         beersModel = beers
         tableView.reloadData()
+    }
+
+    func setInsets(insets: UIEdgeInsets) {
+        tableView.contentInset = insets
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,7 +49,8 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         if let beer = beersModel?[indexPath.row] {
             cell.setName(beer.name)
-            cell.setDesc(beer.descr)
+            cell.setStyle(beer.style)
+            cell.setIBU(String(beer.IBU))
 
             photoLoader(beer.labelImageUrl) {
                 (image) in
@@ -93,9 +96,7 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        searchView.frame = CGRect(x: 0, y: 64, width: width, height: 44)
-        tableView.frame = CGRect(x: 0, y: searchView.bottom, width: width, height: height - searchView.bottom)
-        tableView.contentInset = UIEdgeInsetsZero
+        tableView.frame = bounds
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -26,6 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerListRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerSearchView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" isTestSource="false" />

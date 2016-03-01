@@ -17,14 +17,25 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "BeerBox"
         beerSearchView.delegate = self
+        automaticallyAdjustsScrollViewInsets = false
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Stash", style: .Plain, target: self, action:
-        "handleStashButtonTap:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
+                target: self, action: "handleStashButtonTap:")
+
+        let searchView: SearchView = SearchView(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+        searchView.placeHolderText = "Type beer name"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchView)
 
         fetchBeers()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        beerSearchView.setInsets(UIEdgeInsets(top: topLayoutGuide.length + 24, left: 0, bottom: 0, right: 0))
+    }
+
 
     private func fetchBeers() {
         DataManager.instance.searchBeersWithTerm("term") {
@@ -36,11 +47,9 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
 
                 self.beerSearchView.showBeers(beers, photoLoader: {
                     (url, completionHandler) -> () in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
                     DataManager.instance.loadPhotoForUrl(url) {
                         (image, error) -> () in
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
                         if error.hasError {
                             self.showAlertForError(error)

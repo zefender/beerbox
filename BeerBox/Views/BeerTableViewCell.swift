@@ -10,7 +10,8 @@ class BeerTableViewCell: UITableViewCell {
     static let cellId = "BeerTableViewCellId"
 
     private let nameLabel = UILabel()
-    private let descLabel = UILabel()
+    private let styleLabel = UILabel()
+    private let ibuLabel = UILabel()
     private let beerImageView: UIImageView = UIImageView()
 
     private let shadowView: UIView = UIView()
@@ -18,6 +19,11 @@ class BeerTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        nameLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
+        styleLabel.font = UIFont(name: "Helvetica-Neue", size: 13)
+        styleLabel.textColor = UIColor.lightGrayColor()
+        ibuLabel.font =  UIFont(name: "Helvetica-Neue", size: 15)
 
         contentView.backgroundColor = UIColor.clearColor()
         backgroundColor = UIColor.clearColor()
@@ -38,8 +44,9 @@ class BeerTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
 
         containerView.addSubview(nameLabel)
-        containerView.addSubview(descLabel)
+        containerView.addSubview(styleLabel)
         containerView.addSubview(beerImageView)
+        containerView.addSubview(ibuLabel)
     }
 
 
@@ -47,12 +54,16 @@ class BeerTableViewCell: UITableViewCell {
         nameLabel.text = name
     }
 
-    func setDesc(desc: String) {
-        descLabel.text = desc
+    func setStyle(style: String) {
+        styleLabel.text = style
     }
 
     func setBeerImage(image: UIImage) {
         beerImageView.image = image
+    }
+
+    func setIBU(ibu: String) {
+        ibuLabel.text = "IBU: \(ibu)"
     }
 
     override func layoutSubviews() {
@@ -66,15 +77,23 @@ class BeerTableViewCell: UITableViewCell {
         shadowView.centerX = centerX
 
         beerImageView.frame = CGRect(x: 0, y: 0, width: 88, height: 88)
+
         nameLabel.frame = CGRect(x: beerImageView.right + 10, y: 6, width: containerView.width - beerImageView.width - 20, height: 44)
-        descLabel.frame = CGRect(x: beerImageView.right + 10, y: nameLabel.bottom + 6, width: containerView.width - beerImageView.width - 16, height: 44)
+        nameLabel.sizeToFit()
+
+        styleLabel.frame = CGRect(x: beerImageView.right + 10, y: nameLabel.bottom + 6, width: containerView.width - beerImageView.width - 16, height: 44)
+        styleLabel.sizeToFit()
+
+        ibuLabel.frame = CGRect(x: beerImageView.right + 10, y: styleLabel.bottom + 6, width: containerView.width - beerImageView.width - 20, height: 44)
+        ibuLabel.sizeToFit()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
         nameLabel.text = nil
-        descLabel.text = nil
+        styleLabel.text = nil
+        ibuLabel.text = nil
         beerImageView.image = nil
     }
 
