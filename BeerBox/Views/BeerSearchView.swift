@@ -25,6 +25,8 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.registerClass(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.cellId)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+        tableView.separatorStyle = .None
 
         addSubview(tableView)
         addSubview(searchView)
@@ -84,7 +86,7 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
+        return 113
     }
 
 

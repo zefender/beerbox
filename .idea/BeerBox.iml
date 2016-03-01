@@ -2,29 +2,29 @@
 <module type="CIDR_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Assets.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/CGRectLayoutExtension.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/ViewLayoutShortcuts.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/AppDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/ViewLayoutShortcuts.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/BeerBoxDataModel.xcdatamodeld/BeerBoxDataModel.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/beers.json" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Error.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/DataManager.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BreweryItem.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerItem.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerList.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/BeerBoxDataModel.xcdatamodeld/BeerBoxDataModel.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/ImageDataManager.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Beer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Brewery+CoreDataProperties.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Brewery.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Beer+CoreDataProperties.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerListRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerSearchView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />
@@ -34,8 +34,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerStashView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/StashViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BreweryViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/ViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/SearchViewController.swift" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
