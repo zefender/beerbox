@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86ead990-15e6-4fb9-8d37-fef32785d9c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/BeerBox.iml" afterPath="$PROJECT_DIR$/.idea/BeerBox.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Controllers/SearchViewController.swift" afterPath="$PROJECT_DIR$/BeerBox/Controllers/SearchViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/BeerBox.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" afterPath="$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Model/DataManager.swift" afterPath="$PROJECT_DIR$/BeerBox/Model/DataManager.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Model/ImageDataManager.swift" afterPath="$PROJECT_DIR$/BeerBox/Model/ImageDataManager.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" afterPath="$PROJECT_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Views/BeerStashView.swift" afterPath="$PROJECT_DIR$/BeerBox/Views/BeerStashView.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift" afterPath="$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" afterPath="$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" />
     </list>
     <ignored path="BeerBox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,81 +31,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SearchViewController.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/SearchViewController.swift">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataManager.swift" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataManager.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BeerBox/Model/DataManager.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="28" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.26024097">
+              <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageDataManager.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Model/ImageDataManager.swift">
+      <file leaf-file-name="BreweryRequest.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="35" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeerSearchView.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Views/BeerSearchView.swift">
+      <file leaf-file-name="BeerRequest.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchView.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Views/SearchView.swift">
+      <file leaf-file-name="BeerItem.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StashViewController.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/StashViewController.swift">
+      <file leaf-file-name="BeerListParser.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+              <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeerViewController.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BeerViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/BeerViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23493975">
-              <caret line="20" column="95" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeerTableViewCell.swift" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BeerBox/Views/BeerTableViewCell.swift">
+      <file leaf-file-name="CoreDataDataSource.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="55" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+              <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreweryItem.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BreweryItem.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="18" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -146,12 +149,9 @@
         <option value="$PROJECT_DIR$/BeerBox/Controllers/ViewController.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Model/Error.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Model/Domain/BeerListResponse.swift" />
-        <option value="$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift" />
-        <option value="$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/BeerView.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Controllers/StashViewController.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Model/Domain/BreweryItem.swift" />
-        <option value="$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/BreweryView.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/SearchView.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/BeerTableViewCell.swift" />
@@ -159,9 +159,14 @@
         <option value="$PROJECT_DIR$/BeerBox/Views/BeerSearchView.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Controllers/SearchViewController.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/BeerStashView.swift" />
-        <option value="$PROJECT_DIR$/BeerBox/Model/DataManager.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Model/ImageDataManager.swift" />
         <option value="$PROJECT_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" />
+        <option value="$PROJECT_DIR$/BeerBox/Model/DataManager.swift" />
       </list>
     </option>
   </component>
@@ -297,6 +302,58 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeerBox" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeerBox" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Networking" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Requests" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeerBox" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BeerBox" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Networking" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Parsers" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -526,21 +583,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/StashViewController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -750,13 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeerBox/Model/CoreData/Brewery.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -778,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeerBox/Views/BeerView.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -800,26 +828,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BreweryItem.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BeerBox/Views/BreweryView.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -867,7 +879,7 @@
     <entry file="file://$PROJECT_DIR$/BeerBox/Model/ImageDataManager.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -888,18 +900,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Model/DataManager.swift">
+    <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/BeerViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="28" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="28" />
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BeerBox/Controllers/BeerViewController.swift">
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BreweryItem.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23493975">
-          <caret line="20" column="95" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Domain/BeerItem.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BeerBox/Model/DataManager.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26024097">
+          <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
           <folding />
         </state>
       </provider>

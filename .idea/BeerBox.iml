@@ -23,6 +23,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerListRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />

@@ -13,4 +13,5 @@ struct BeerItem {
     let IBU: Int
     let descr: String
     let style: String
+    let breweryId: String
 }

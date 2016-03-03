@@ -14,12 +14,20 @@ class DataManager {
     private let imageStorage = ImageDataManager()
 
     func addBeerToStash(beer: BeerItem, completion: (Error) -> ()) {
+        self.coreDataSource.addBeerToStash(beer)
+
+        if !coreDataSource.breweryIsStored(beer.breweryId) {
+            // load and save the brewery
+//            DataManager.fetchBreweryWithId(breweryId: String) {
+//
+//            }
+
+        }
+
         loadPhotoForUrl(beer.labelImageUrl) {
             image, error in
 
             if let image = image {
-                self.coreDataSource.addBeerToStash(beer)
-
                 if let data = UIImagePNGRepresentation(image) {
                     self.imageStorage.storeImageData(data, withFileName: String(beer.bid))
                 }
@@ -29,13 +37,19 @@ class DataManager {
         }
     }
 
+    private func fetchBreweryWithId(breweryId: String, completion: (BreweryItem, Error) -> ()) {
+
+
+    }
+
 
     func fetchStash() -> [BeerItem]? {
         if let stash = coreDataSource.stash() as [Beer]? {
             return stash.map {
                 beer in
                 return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
-                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "")
+                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
+                breweryId: beer.breweryId)
             }
         } else {
             return nil
