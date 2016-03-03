@@ -13,33 +13,88 @@ class DataManager {
     private let apiClient = APIClient()
     private let imageStorage = ImageDataManager()
 
-    func addBeerToStash(beer: BeerItem, completion: (Error) -> ()) {
-        self.coreDataSource.addBeerToStash(beer)
+    func addBeerToStash(beerId: Int, completion: (Error) -> ()) {
+        // load beer's details
+        fetchBeerWithId(beerId) {
+            fetchedBeer, error in
 
-        if !coreDataSource.breweryIsStored(beer.breweryId) {
-            // load and save the brewery
-//            DataManager.fetchBreweryWithId(breweryId: String) {
-//
-//            }
+            if let beer = fetchedBeer {
+                // Do we have brewery for beer?
+                if !self.coreDataSource.breweryIsStored(beer.bid) {
+                    // load and save the brewery
+                    self.fetchBreweryWithId(beer.breweryId) {
+                        brewery, error in
+                        if let brewery = brewery {
+                            // save to local store
+                            self.coreDataSource.addBrewery(brewery)
 
-        }
+                            // save beer to local store
+                            self.coreDataSource.addBeerToStash(beer)
+                        }
+                    }
 
-        loadPhotoForUrl(beer.labelImageUrl) {
-            image, error in
-
-            if let image = image {
-                if let data = UIImagePNGRepresentation(image) {
-                    self.imageStorage.storeImageData(data, withFileName: String(beer.bid))
+                    // save beer to local store
+                    self.coreDataSource.addBeerToStash(beer)
                 }
             }
-
-            completion(error)
         }
     }
 
-    private func fetchBreweryWithId(breweryId: String, completion: (BreweryItem, Error) -> ()) {
 
+    private func fetchBreweryWithId(breweryId: String, completion: (BreweryItem?, Error) -> ()) {
+        let request = BreweryRequest(breweryId: breweryId)
 
+        apiClient.sendRequest(request) {
+            data, error in
+
+            if let data = data {
+                if let brewery = BreweryParser(data: data).parse() as? BreweryItem {
+
+                    // load label
+                    self.loadPhotoForUrl(/*brewery.labelImageUrl*/ "") {
+                        image, error in
+
+                        if let image = image {
+                            if let data = UIImagePNGRepresentation(image) {
+                                self.imageStorage.storeImageData(data, withFileName: String(brewery.bid))
+                            }
+                        }
+
+                        completion(brewery, error)
+                    }
+                }
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+
+    private func fetchBeerWithId(beerId: Int, completion: (BeerItem?, Error) -> ()) {
+        let request = BeerRequest(bid: beerId)
+
+        apiClient.sendRequest(request) {
+            data, error in
+
+            if let data = data {
+                if let beer = BeerParser(data: data).parse() as? BeerItem {
+
+                    // load label
+                    self.loadPhotoForUrl(/*brewery.labelImageUrl*/ "") {
+                        image, error in
+
+                        if let image = image {
+                            if let data = UIImagePNGRepresentation(image) {
+                                self.imageStorage.storeImageData(data, withFileName: String(beer.bid))
+                            }
+                        }
+
+                        completion(beer, error)
+                    }
+                }
+            } else {
+                completion(nil, error)
+            }
+        }
     }
 
 
@@ -49,7 +104,7 @@ class DataManager {
                 beer in
                 return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
                         ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
-                breweryId: beer.breweryId)
+                        breweryId: "1" /*beer.breweryId*/)
             }
         } else {
             return nil
@@ -59,8 +114,7 @@ class DataManager {
     func photoForBeer(beer: BeerItem) -> UIImage? {
         if let image = imageStorage.fetchImageWithFileName(String(beer.bid)) {
             return image
-        }
-        else {
+        } else {
             return nil
         }
     }

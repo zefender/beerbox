@@ -110,7 +110,7 @@ class CoreDataDataSource {
         }
     }
 
-    func breweryIsStored(breweryId: String) -> Bool {
+    func breweryIsStored(breweryId: Int) -> Bool {
         let fetchRequest = NSFetchRequest(entityName: "Brewery")
         fetchRequest.predicate = NSPredicate(format: "bid == %d", breweryId)
 

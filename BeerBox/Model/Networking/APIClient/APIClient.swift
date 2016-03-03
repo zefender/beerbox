@@ -11,7 +11,7 @@ import Foundation
 class APIClient {
     private let endPoint = "https://api.untappd.com/v4"
 
-    func sendRequest(request: Request, completionHandler: (NSData?, Error?) -> Void) {
+    func sendRequest(request: Request, completionHandler: (NSData?, Error) -> Void) {
         let urlString = "\(endPoint)/\(request.method())"
         let httpRequest = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         httpRequest.HTTPMethod = request.httpMethod().rawValue

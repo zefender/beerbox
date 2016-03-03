@@ -21,6 +21,8 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Beer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Beer+CoreDataProperties.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerParser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BreweryParser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" isTestSource="false" />
