@@ -51,11 +51,10 @@ class BeerCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        nameLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
-        nameLabel.center = center
+        nameLabel.frame = CGRect(x: 0, y: 8, width: width, height: 44)
 
         descriptionLabel.frame = CGRect(x: 0, y: nameLabel.bottom, width: width, height: 44)
-        beerImage.frame = CGRect(x: 0, y: descriptionLabel.bottom, width: width, height: 44)
+        beerImage.frame = CGRect(x: 0, y: descriptionLabel.bottom, width: width, height: 100)
         ibuLabel.frame = CGRect(x: 0, y: beerImage.bottom, width: width, height: 44)
         abvLabel.frame = CGRect(x: 0, y: ibuLabel.bottom, width: width, height: 44)
         styleLabel.frame = CGRect(x: 0, y: nameLabel.bottom + 8, width: width, height: 44)

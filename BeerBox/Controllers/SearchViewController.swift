@@ -68,7 +68,12 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
     }
 
     func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int) {
-        DataManager.instance.addBeerToStash(beers[index])
+        DataManager.instance.addBeerToStash(beers[index]) {
+            error in
+            if error.hasError {
+                self.showAlertForError(error)
+            }
+        }
     }
 
 }

@@ -13,14 +13,27 @@ class DataManager {
     private let apiClient = APIClient()
     private let imageStorage = ImageDataManager()
 
-    func addBeerToStash(beer: BeerItem) {
-        coreDataSource.addBeerToStash(beer)
+    func addBeerToStash(beer: BeerItem, completion: (Error) -> ()) {
+        loadPhotoForUrl(beer.labelImageUrl) {
+            image, error in
+
+            if let image = image {
+                self.coreDataSource.addBeerToStash(beer)
+
+                if let data = UIImagePNGRepresentation(image) {
+                    self.imageStorage.storeImageData(data, withFileName: String(beer.bid))
+                }
+            }
+
+            completion(error)
+        }
     }
 
 
     func fetchStash() -> [BeerItem]? {
         if let stash = coreDataSource.stash() as [Beer]? {
-            return stash.map { beer in
+            return stash.map {
+                beer in
                 return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
                         ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "")
             }
@@ -29,8 +42,17 @@ class DataManager {
         }
     }
 
+    func photoForBeer(beer: BeerItem) -> UIImage? {
+        if let image = imageStorage.fetchImageWithFileName(String(beer.bid)) {
+            return image
+        }
+        else {
+            return nil
+        }
+    }
 
     func removeBeerFromStash(beer: BeerItem) {
+        imageStorage.deletePhoto(String(beer.bid))
         coreDataSource.removeBeer(beer)
     }
 

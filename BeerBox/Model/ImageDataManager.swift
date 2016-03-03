@@ -28,8 +28,8 @@ class ImageDataManager {
     func deletePhoto(filename: String) {
         do {
            try NSFileManager.defaultManager().removeItemAtPath(pathForFilename(filename))
-        }  catch let error as NSError {
-            print(error.localizedDescription)
+        }  catch {
+            print(error)
         }
     }
 }
