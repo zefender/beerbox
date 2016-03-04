@@ -6,8 +6,8 @@
 import Foundation
 import UIKit
 
-class SearchViewController: ViewController, BeerSearchViewDelegate {
-    private let beerSearchView = BeerSearchView(frame: UIScreen.mainScreen().bounds)
+class PopularViewController: ViewController, PopularViewDelegate {
+    private let beerSearchView = PopularView(frame: UIScreen.mainScreen().bounds)
     private var beers = [BeerItem]()
 
     override func loadView() {
@@ -23,9 +23,8 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
                 target: self, action: "handleStashButtonTap:")
 
-        let searchView: SearchView = SearchView(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-        searchView.placeHolderText = "Type beer name"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchView)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .Plain,
+                target: self, action: "handleSearchButtonTap:")
 
         fetchBeers()
     }
@@ -67,7 +66,13 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int) {
+    func handleSearchButtonTap(sender: AnyObject) {
+        let controller = SearchViewController()
+        navigationController?.presentViewController(controller, animated: true, completion: nil)
+    }
+
+
+    func popularView(view: PopularView, didTriggerStachActionForIndex index: Int) {
         DataManager.instance.addBeerToStash(beers[index].bid) {
             error in
             if error.hasError {
@@ -75,5 +80,4 @@ class SearchViewController: ViewController, BeerSearchViewDelegate {
             }
         }
     }
-
 }
