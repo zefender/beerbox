@@ -1,9 +1,9 @@
 import Foundation
 
 class BreweryRequest: Request {
-    private let breweryId: String
+    private let breweryId: Int
 
-    init(breweryId: String) {
+    init(breweryId: Int) {
         self.breweryId = breweryId
     }
 
@@ -16,6 +16,6 @@ class BreweryRequest: Request {
     }
 
     override func path() -> String {
-        return breweryId
+        return String(breweryId)
     }
 }

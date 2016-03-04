@@ -70,14 +70,14 @@ class CoreDataDataSource {
         }
     }
 
-    func breweryById(id: Int) -> Brewery? {
+    func breweryById(id: Int) -> BreweryItem? {
         let fetchRequest = NSFetchRequest(entityName: "Brewery")
         fetchRequest.predicate = NSPredicate(format: "bid == %d", id)
 
         do {
             if let brewers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
                 if let brewery = brewers.first {
-                    return brewery
+                    return BreweryItem(bid: brewery.bid!.integerValue, beersInStash: brewery.beers!.count)
                 }
             }
         } catch {

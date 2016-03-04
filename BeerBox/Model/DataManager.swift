@@ -41,7 +41,7 @@ class DataManager {
     }
 
 
-    private func fetchBreweryWithId(breweryId: String, completion: (BreweryItem?, Error) -> ()) {
+    private func fetchBreweryWithId(breweryId: Int, completion: (BreweryItem?, Error) -> ()) {
         let request = BreweryRequest(breweryId: breweryId)
 
         apiClient.sendRequest(request) {
@@ -104,7 +104,7 @@ class DataManager {
                 beer in
                 return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
                         ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
-                        breweryId: "1" /*beer.breweryId*/)
+                        breweryId: 1 /*beer.breweryId*/)
             }
         } else {
             return nil
@@ -122,6 +122,13 @@ class DataManager {
     func removeBeerFromStash(beer: BeerItem) {
         imageStorage.deletePhoto(String(beer.bid))
         coreDataSource.removeBeer(beer)
+
+        // remove brewery if it was last beer
+        if let brewery = coreDataSource.breweryById(beer.breweryId) {
+            if brewery.beersInStash == 0 {
+                coreDataSource.removeBreweryById(brewery.bid)
+            }
+        }
     }
 
     func searchBeersWithTerm(term: String, completionHandler: ([BeerItem]?, Error) -> ()) {
