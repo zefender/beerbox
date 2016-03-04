@@ -8,18 +8,20 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/AppDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerSearchView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/PopularView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/TextFeild.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BreweryView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerTableViewCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerStashView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BreweryViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/PopularViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/StashViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/ViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/SearchViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/ViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/BeerBoxDataModel.xcdatamodeld/BeerBoxDataModel.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/beers.json" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Error.swift" isTestSource="false" />
@@ -29,10 +31,11 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BreweryParser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerListRequest.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/SearchRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/PopularRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/ImageDataManager.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Beer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/Brewery.swift" isTestSource="false" />

@@ -6,12 +6,12 @@
 import Foundation
 import UIKit
 
-protocol BeerSearchViewDelegate: class {
-    func beerSearchView(view: BeerSearchView, didTriggerStachActionForIndex index: Int)
+protocol PopularViewDelegate: class {
+    func popularView(view: PopularView, didTriggerStachActionForIndex index: Int)
 }
 
-class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
-    weak var delegate: BeerSearchViewDelegate?
+class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
+    weak var delegate: PopularViewDelegate?
 
     private var beersModel: [BeerItem]!
     private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
@@ -74,7 +74,7 @@ class BeerSearchView: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
             action, index in
-            self.delegate?.beerSearchView(self, didTriggerStachActionForIndex: indexPath.row)
+            self.delegate?.popularView(self, didTriggerStachActionForIndex: indexPath.row)
             self.tableView.setEditing(false, animated: true)
         }
 

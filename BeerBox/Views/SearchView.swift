@@ -1,32 +1,72 @@
 import Foundation
 import UIKit
 
-class SearchView: UIView {
-    private let iconImageView = UIView()
-    private let textField = UITextField()
+protocol SearchViewDelegate: class {
+    func searchViewDidTriggerCloseAction(view: SearchView)
+}
 
-    var placeHolderText: String? {
-        set {
-            textField.placeholder = placeHolderText
-        }
-        get {
-            return textField.placeholder
-        }
-    }
+class SearchView: UIView, UITableViewDataSource, UITableViewDelegate {
+    weak var delegate: SearchViewDelegate?
+
+    private let onePixel = 1 / UIScreen.mainScreen().scale
+
+    private let searchTextFeild: TextFeild = TextFeild()
+    private let tableView: UITableView = UITableView()
+    private let closeButton: UIButton = UIButton()
+    private let border: CALayer = CALayer()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubview(iconImageView)
-        addSubview(textField)
+        searchTextFeild.backgroundColor = UIColor.whiteColor()
+        searchTextFeild.placeholder = "Type beer name"
+
+        addBorder()
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .None
+
+        closeButton.addTarget(self, action: "closeButtonDidTapped:", forControlEvents: .TouchUpInside)
+        closeButton.setTitle("X", forState: .Normal)
+        closeButton.backgroundColor = UIColor.whiteColor()
+        closeButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+
+        addSubview(searchTextFeild)
+        addSubview(tableView)
+        addSubview(closeButton)
     }
+
+    private func addBorder() {
+        border.borderColor = UIColor.lightGrayColor().CGColor
+        border.borderWidth = onePixel
+        tableView.layer.addSublayer(border)
+        tableView.layer.masksToBounds = true
+    }
+
+    func closeButtonDidTapped(sender: UIButton) {
+        delegate?.searchViewDidTriggerCloseAction(self)
+    }
+
+    // MARK: UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        iconImageView.frame = CGRect(x: 0, y: 0, width: bounds.height, height: bounds.height)
-        textField.frame = CGRect(x: iconImageView.bounds.width, y: 0, width: bounds.width - iconImageView.bounds.width, height: bounds.height)
+        searchTextFeild.frame = CGRect(x: 0, y: 0, width: width - 44, height: 56)
+        closeButton.frame = CGRect(x: searchTextFeild.right, y: 0, width: 44, height: 56)
+        tableView.frame = CGRect(x: 0, y: searchTextFeild.bottom, width: width, height: height - searchTextFeild.height)
+        border.frame = CGRect(x: 0, y: 0, width: width, height: onePixel)
     }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

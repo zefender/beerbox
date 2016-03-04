@@ -5,7 +5,7 @@
 
 import Foundation
 
-class BeerListRequest: Request {
+class PopularRequest: Request {
     override func httpMethod() -> HTTPMethod {
         return .GET
     }
