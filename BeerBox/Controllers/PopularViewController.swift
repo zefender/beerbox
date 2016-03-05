@@ -72,7 +72,7 @@ class PopularViewController: ViewController, PopularViewDelegate {
     }
 
 
-    func popularView(view: PopularView, didTriggerStachActionForIndex index: Int) {
+    func popularView(view: PopularView, didTriggerStashActionForIndex index: Int) {
         DataManager.instance.addBeerToStash(beers[index].bid) {
             error in
             if error.hasError {

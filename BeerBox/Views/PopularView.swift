@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 protocol PopularViewDelegate: class {
-    func popularView(view: PopularView, didTriggerStachActionForIndex index: Int)
+    func popularView(view: PopularView, didTriggerStashActionForIndex index: Int)
 }
 
 class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
@@ -74,7 +74,7 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
             action, index in
-            self.delegate?.popularView(self, didTriggerStachActionForIndex: indexPath.row)
+            self.delegate?.popularView(self, didTriggerStashActionForIndex: indexPath.row)
             self.tableView.setEditing(false, animated: true)
         }
 

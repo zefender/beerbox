@@ -127,6 +127,23 @@ class CoreDataDataSource {
         return false
     }
 
+    func beerIsStashed(beerId: Int) -> Bool {
+        let fetchRequest = NSFetchRequest(entityName: "Beer")
+        fetchRequest.predicate = NSPredicate(format: "bid == %d", beerId)
+
+        do {
+            if let results = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
+                if let _ = results.first {
+                    return true
+                }
+            }
+        } catch {
+            print(error)
+        }
+
+        return false
+    }
+
     init() {
         guard let modelURL = NSBundle.mainBundle().URLForResource("BeerBoxDataModel", withExtension: "momd") else {
             fatalError("Error loading model from bundle")

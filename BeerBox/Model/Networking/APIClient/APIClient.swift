@@ -19,7 +19,6 @@ class APIClient {
         configureHttpRequest(httpRequest)
 
         if let parametersString = buildHttpBodyString(request.parameters()) {
-            print("parametersString = \(parametersString)")
             httpRequest.HTTPBody = parametersString.dataUsingEncoding(NSUTF8StringEncoding)
         }
 

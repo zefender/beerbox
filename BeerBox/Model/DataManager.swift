@@ -17,7 +17,6 @@ class DataManager {
         // load beer's details
         fetchBeerWithId(beerId) {
             fetchedBeer, error in
-
             if let beer = fetchedBeer {
                 // Do we have brewery for beer?
                 if !self.coreDataSource.breweryIsStored(beer.bid) {
@@ -75,6 +74,8 @@ class DataManager {
         apiClient.sendRequest(request) {
             data, error in
 
+            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+
             if let data = data {
                 if let beer = BeerParser(data: data).parse() as? BeerItem {
 
@@ -104,7 +105,7 @@ class DataManager {
                 beer in
                 return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
                         ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
-                        breweryId: 1 /*beer.breweryId*/)
+                        breweryId: 1 /*beer.breweryId*/, inStash: true)
             }
         } else {
             return nil
@@ -136,6 +137,13 @@ class DataManager {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let parsed = BeerListParser(data: jsonData).parse() as! BeerList
+
+                // set inStash
+                if let beers = parsed.beers {
+                    for var beer in beers {
+                        beer.inStash = coreDataSource.beerIsStashed(beer.bid)
+                    }
+                }
 
                 completionHandler(parsed.beers, Error(error: nil))
             } catch {
