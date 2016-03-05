@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class TextFeild: UITextField {
+class TextField: UITextField {
     override func textRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, 13, 0)
     }

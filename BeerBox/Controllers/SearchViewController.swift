@@ -16,6 +16,13 @@ class SearchViewController: ViewController, SearchViewDelegate {
         automaticallyAdjustsScrollViewInsets = false
     }
 
+
+    // MARK: SearchViewDelegate
+
+    func searchViewDidTriggerSearchAction(view: SearchView, withTerm term: String) {
+
+    }
+
     func searchViewDidTriggerCloseAction(view: SearchView) {
         dismissViewControllerAnimated(true, completion: nil)
     }

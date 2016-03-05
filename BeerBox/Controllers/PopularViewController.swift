@@ -27,20 +27,12 @@ class PopularViewController: ViewController, PopularViewDelegate {
                  NSForegroundColorAttributeName: Colors.tintColor]
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
                 target: self, action: "handleStashButtonTap:")
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .Plain,
                 target: self, action: "handleSearchButtonTap:")
 
         fetchBeers()
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-
     }
 
 
