@@ -26,11 +26,12 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/PopularRequest.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/SearchRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Colors.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/AppDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/CGRectLayoutExtension.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Assets.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/ViewLayoutShortcuts.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/AppDelegate.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/PopularView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerStashView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />

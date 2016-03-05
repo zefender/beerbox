@@ -20,6 +20,14 @@ class PopularViewController: ViewController, PopularViewDelegate {
         beerSearchView.delegate = self
         automaticallyAdjustsScrollViewInsets = false
 
+        navigationController?.navigationBar.tintColor = Colors.tintColor
+        navigationController?.navigationBar.topItem?.title = "P O P U L A R"
+        navigationController?.navigationBar.titleTextAttributes =
+                [NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!,
+                 NSForegroundColorAttributeName: Colors.tintColor]
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
                 target: self, action: "handleStashButtonTap:")
 
@@ -28,6 +36,13 @@ class PopularViewController: ViewController, PopularViewDelegate {
 
         fetchBeers()
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+
+    }
+
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
