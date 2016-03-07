@@ -36,6 +36,8 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        backgroundColor = Colors.background
+
         addSubview(stashCollectionView)
         addSubview(emptyLabel)
 
