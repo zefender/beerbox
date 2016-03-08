@@ -72,13 +72,13 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let addToStash = UITableViewRowAction(style: .Normal, title: "I'v got it!") {
+        let addToStash = UITableViewRowAction(style: .Normal, title: "I have it!") {
             action, index in
             self.delegate?.popularView(self, didTriggerStashActionForIndex: indexPath.row)
             self.tableView.setEditing(false, animated: true)
         }
 
-        addToStash.backgroundColor = UIColor.orangeColor()
+        addToStash.backgroundColor = Colors.tintColor
 
         return [addToStash]
     }

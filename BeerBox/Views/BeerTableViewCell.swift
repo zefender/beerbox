@@ -23,7 +23,7 @@ class BeerTableViewCell: UITableViewCell {
         nameLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
         styleLabel.font = UIFont(name: "Helvetica-Neue", size: 13)
         styleLabel.textColor = UIColor.lightGrayColor()
-        ibuLabel.font =  UIFont(name: "Helvetica-Neue", size: 15)
+        ibuLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
 
         contentView.backgroundColor = UIColor.clearColor()
         backgroundColor = UIColor.clearColor()
@@ -66,6 +66,7 @@ class BeerTableViewCell: UITableViewCell {
         ibuLabel.text = "IBU: \(ibu)"
     }
 
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -86,6 +87,13 @@ class BeerTableViewCell: UITableViewCell {
 
         ibuLabel.frame = CGRect(x: beerImageView.right + 10, y: styleLabel.bottom + 6, width: containerView.width - beerImageView.width - 20, height: 44)
         ibuLabel.sizeToFit()
+
+        for view in subviews {
+            let className = NSStringFromClass(view.dynamicType)
+            if className == "UITableViewCellDeleteConfirmationView" {
+                view.height = height - 25
+            }
+        }
     }
 
     override func prepareForReuse() {
