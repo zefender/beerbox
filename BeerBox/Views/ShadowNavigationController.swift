@@ -10,11 +10,11 @@ class ShadowNavigationController: UINavigationController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        let layer = navigationBar.layer
-        layer.shadowColor = UIColor.blackColor().CGColor
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowOpacity = 0.4
-        layer.shadowRadius = 10
+        let shadowLayer = navigationBar.layer
+        shadowLayer.shadowColor = UIColor.blackColor().CGColor
+        shadowLayer.shadowOffset = CGSize(width: 0, height: 0)
+        shadowLayer.shadowOpacity = 0.4
+        shadowLayer.shadowRadius = 20
     }
 
 
