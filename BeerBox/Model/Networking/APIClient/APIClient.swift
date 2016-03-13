@@ -9,6 +9,8 @@
 import Foundation
 
 class APIClient {
+    private let clientID = "90918F677B9D5DD2AC12FC2E082A645C30547182"
+    private let clientSecret = "35ACA978EB6E99F9036F0F591E36667AE08CA86A"
     private let endPoint = "https://api.untappd.com/v4"
 
     func sendRequest(request: Request, completionHandler: (NSData?, Error) -> Void) {

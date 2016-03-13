@@ -20,7 +20,7 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     private lazy var stashCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = UIColor.blackColor()
+        collectionView.backgroundColor = Colors.background
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
@@ -35,8 +35,6 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        backgroundColor = Colors.background
 
         addSubview(stashCollectionView)
         addSubview(emptyLabel)
@@ -89,11 +87,16 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 160, height: 230)
+        return CGSize(width: 136, height: 245)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        return UIEdgeInsets(top: 0, left: 24, bottom: 24, right: 24)
+    }
+
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 24
     }
 
 
@@ -105,10 +108,11 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
             cell.setName(beer.name)
             cell.setStyle(beer.style)
-
-            if let photo = DataManager.instance.photoForBeer(beer) {
-                cell.setBeerImage(photo)
-            }
+            cell.setBeerImage(UIImage(named: "Guinness")!)
+            cell.setIBU(String(beer.IBU))
+//            if let photo = DataManager.instance.photoForBeer(beer) {
+//                cell.setBeerImage(photo)
+//            }
         }
 
         return cell

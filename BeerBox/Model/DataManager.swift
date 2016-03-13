@@ -100,16 +100,38 @@ class DataManager {
 
 
     func fetchStash() -> [BeerItem]? {
-        if let stash = coreDataSource.stash() as [Beer]? {
-            return stash.map {
-                beer in
-                return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
-                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
-                        breweryId: 1 /*beer.breweryId*/, inStash: true)
-            }
-        } else {
-            return nil
-        }
+//        if let stash = coreDataSource.stash() as [Beer]? {
+//            return stash.map {
+//                beer in
+//                return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
+//                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
+//                        breweryId: 1 /*beer.breweryId*/, inStash: true)
+//            }
+//        } else {
+//            return nil
+//        }
+
+        var stash = [BeerItem]()
+
+        stash.append(BeerItem(bid: 1, name: "Guinness", labelImageUrl: "", ABV: 17, IBU: 44, descr: "Awesome beer",
+        style: "Stout", breweryId: 1, inStash: true))
+
+        stash.append(BeerItem(bid: 1, name: "Redrum", labelImageUrl: "", ABV: 17, IBU: 45, descr: "Awesome beer",
+                style: "DIPA", breweryId: 1, inStash: true))
+
+        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
+                style: "IPA", breweryId: 1, inStash: true))
+
+        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
+                style: "IPA", breweryId: 1, inStash: true))
+
+        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
+                style: "IPA", breweryId: 1, inStash: true))
+
+        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
+                style: "IPA", breweryId: 1, inStash: true))
+
+        return stash
     }
 
     func photoForBeer(beer: BeerItem) -> UIImage? {

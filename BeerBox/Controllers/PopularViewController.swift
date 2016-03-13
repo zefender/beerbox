@@ -31,20 +31,29 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
+        navigationController?.navigationBar.tintColor = Colors.tintColor
+        navigationController?.navigationBar.titleTextAttributes =
+                [NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!,
+                 NSForegroundColorAttributeName: Colors.tintColor]
+
         setDefaultsNavigationBarAppearance()
 
         fetchPopularBeers()
     }
 
+
     func setDefaultsNavigationBarAppearance() {
         navigationItem.rightBarButtonItem = stashButton
         navigationItem.leftBarButtonItem = searchButton
 
-        navigationController?.navigationBar.tintColor = Colors.tintColor
         navigationController?.navigationBar.topItem?.title = "P O P U L A R"
-        navigationController?.navigationBar.titleTextAttributes =
-                [NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!,
-                 NSForegroundColorAttributeName: Colors.tintColor]
+    }
+
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.topItem?.title = "P O P U L A R"
     }
 
 

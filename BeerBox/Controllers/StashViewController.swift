@@ -22,6 +22,13 @@ class StashViewController: UIViewController, BeerStashViewDelegate, BeerViewCont
         reloadStash()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.topItem?.title = "S T A S H"
+    }
+
+
     private func reloadStash() {
         if let beers = DataManager.instance.fetchStash() {
             stash = beers
@@ -36,7 +43,7 @@ class StashViewController: UIViewController, BeerStashViewDelegate, BeerViewCont
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        stashView.setInsets(UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0))
+        stashView.setInsets(UIEdgeInsets(top: topLayoutGuide.length + 24, left: 0, bottom: 0, right: 0))
     }
 
     func beerViewControllerDidDeleteBeerFromStash(controller: BeerViewController) {

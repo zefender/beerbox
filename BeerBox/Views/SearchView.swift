@@ -6,7 +6,7 @@ protocol SearchViewDelegate: class {
     func searchViewDidTriggerCloseAction(view: SearchView)
 }
 
-class SearchView: UIView {
+class SearchView: UIView, UITextFieldDelegate {
     weak var delegate: SearchViewDelegate?
 
     private let searchTextField: UITextField = UITextField()
@@ -18,9 +18,18 @@ class SearchView: UIView {
         closeButton.setTitle("X", forState: .Normal)
         closeButton.addTarget(self, action: "closeButtonDidTaped:", forControlEvents: .TouchUpInside)
 
+        searchTextField.delegate = self
+        searchTextField.returnKeyType = .Search
+
         addSubview(searchTextField)
         addSubview(closeButton)
     }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
 
     func setPlaceHolder(placeholder: String) {
         searchTextField.placeholder = placeholder

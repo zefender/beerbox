@@ -21,9 +21,13 @@ class BeerTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         nameLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
+        nameLabel.textColor = Colors.tintColor
+
         styleLabel.font = UIFont(name: "Helvetica-Neue", size: 13)
-        styleLabel.textColor = UIColor.lightGrayColor()
+        styleLabel.textColor = Colors.grayFont
+
         ibuLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
+        ibuLabel.textColor = Colors.tintColor
 
         contentView.backgroundColor = UIColor.clearColor()
         backgroundColor = UIColor.clearColor()
