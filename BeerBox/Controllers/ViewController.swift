@@ -13,4 +13,8 @@ class ViewController: UIViewController {
 
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 }

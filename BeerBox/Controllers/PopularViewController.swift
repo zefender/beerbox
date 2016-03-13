@@ -6,40 +6,52 @@
 import Foundation
 import UIKit
 
-class PopularViewController: ViewController, PopularViewDelegate {
-    private let beerSearchView = PopularView(frame: UIScreen.mainScreen().bounds)
+class PopularViewController: ViewController, PopularViewDelegate, SearchViewDelegate {
+    private let beerListView = PopularView(frame: UIScreen.mainScreen().bounds)
     private var beers = [BeerItem]()
+    private var foundedBeers = [BeerItem]()
+    private var searchButton: UIBarButtonItem!
+    private var stashButton: UIBarButtonItem!
 
     override func loadView() {
-        view = beerSearchView
+        view = beerListView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        beerSearchView.delegate = self
+        beerListView.delegate = self
         automaticallyAdjustsScrollViewInsets = false
+
+        searchButton = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .Plain,
+                target: self, action: "handleSearchButtonTap:")
+
+        stashButton = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
+                target: self, action: "handleStashButtonTap:")
+
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
+        setDefaultsNavigationBarAppearance()
+
+        fetchBeers()
+    }
+
+    func setDefaultsNavigationBarAppearance() {
+        navigationItem.rightBarButtonItem = stashButton
+        navigationItem.leftBarButtonItem = searchButton
 
         navigationController?.navigationBar.tintColor = Colors.tintColor
         navigationController?.navigationBar.topItem?.title = "P O P U L A R"
         navigationController?.navigationBar.titleTextAttributes =
                 [NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!,
                  NSForegroundColorAttributeName: Colors.tintColor]
-
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "StachIcon"), style: .Plain,
-                target: self, action: "handleStashButtonTap:")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .Plain,
-                target: self, action: "handleSearchButtonTap:")
-
-        fetchBeers()
     }
 
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        beerSearchView.setInsets(UIEdgeInsets(top: topLayoutGuide.length + 24, left: 0, bottom: 0, right: 0))
+        beerListView.setInsets(UIEdgeInsets(top: topLayoutGuide.length + 24, left: 0, bottom: 0, right: 0))
     }
 
 
@@ -51,7 +63,7 @@ class PopularViewController: ViewController, PopularViewDelegate {
             } else if let beers = beers {
                 self.beers = beers
 
-                self.beerSearchView.showBeers(beers, photoLoader: {
+                self.beerListView.showBeers(beers, photoLoader: {
                     (url, completionHandler) -> () in
 
                     DataManager.instance.loadPhotoForUrl(url) {
@@ -74,8 +86,14 @@ class PopularViewController: ViewController, PopularViewDelegate {
     }
 
     func handleSearchButtonTap(sender: AnyObject) {
-        let controller = SearchViewController()
-        navigationController?.presentViewController(controller, animated: true, completion: nil)
+        let searchView = SearchView(frame: CGRect(x: 0, y: 0, width: navigationController?.navigationBar.width ?? 0 - 44,
+                height: navigationController?.navigationBar.height ?? 0))
+        searchView.setPlaceHolder("Type beer name")
+        searchView.delegate = self
+        searchView.setFirstResponder()
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchView)
+        navigationItem.rightBarButtonItem = nil
     }
 
 
@@ -86,5 +104,9 @@ class PopularViewController: ViewController, PopularViewDelegate {
                 self.showAlertForError(error)
             }
         }
+    }
+
+    func searchViewDidTriggerCloseAction(view: SearchView) {
+        setDefaultsNavigationBarAppearance()
     }
 }

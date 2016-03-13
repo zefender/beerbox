@@ -16,28 +16,28 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     private var beersModel: [BeerItem]!
     private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
 
-    private let tableView: UITableView = UITableView()
+    private let popularTableView: UITableView = UITableView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        tableView.registerClass(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.cellId)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
-        tableView.separatorStyle = .None
+        popularTableView.registerClass(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.cellId)
+        popularTableView.delegate = self
+        popularTableView.dataSource = self
+        popularTableView.backgroundColor = UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+        popularTableView.separatorStyle = .None
 
-        addSubview(tableView)
+        addSubview(popularTableView)
     }
 
     func showBeers(beers: [BeerItem], photoLoader: (String, (UIImage?) -> ()) -> ()) {
         self.photoLoader = photoLoader
         beersModel = beers
-        tableView.reloadData()
+        popularTableView.reloadData()
     }
 
     func setInsets(insets: UIEdgeInsets) {
-        tableView.contentInset = insets
+        popularTableView.contentInset = insets
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,7 +75,7 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I have it!") {
             action, index in
             self.delegate?.popularView(self, didTriggerStashActionForIndex: indexPath.row)
-            self.tableView.setEditing(false, animated: true)
+            self.popularTableView.setEditing(false, animated: true)
         }
 
         addToStash.backgroundColor = Colors.tintColor
@@ -96,11 +96,10 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        tableView.frame = bounds
+        popularTableView.frame = bounds
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
