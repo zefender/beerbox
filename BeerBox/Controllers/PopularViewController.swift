@@ -96,20 +96,7 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
                 self.showAlertForError(error)
             } else if let beers = beers {
                 self.beers = beers
-
-                self.beerListView.showBeers(beers, photoLoader: {
-                    (url, completionHandler) -> () in
-
-                    DataManager.instance.loadPhotoForUrl(url) {
-                        (image, error) -> () in
-
-                        if error.hasError {
-                            self.showAlertForError(error)
-                        } else {
-                            completionHandler(image)
-                        }
-                    }
-                })
+                self.showBeers(beers)
             }
         }
     }
@@ -141,6 +128,37 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
             }
         }
     }
+
+    func searchViewDidTriggerSearchAction(term: String) {
+        DataManager.instance.searchBeersWithTerm(term) {
+            beers, error in
+            if error.hasError {
+                self.showAlertForError(error)
+            } else {
+                if let beers = beers {
+                    self.showBeers(beers)
+                }
+            }
+
+        }
+    }
+
+    private func showBeers(beers: [BeerItem]) {
+        self.beerListView.showBeers(beers, photoLoader: {
+            (url, completionHandler) -> () in
+
+            DataManager.instance.loadPhotoForUrl(url) {
+                (image, error) -> () in
+
+                if error.hasError {
+                    self.showAlertForError(error)
+                } else {
+                    completionHandler(image)
+                }
+            }
+        })
+    }
+
 
     func searchViewDidTriggerCloseAction(view: SearchView) {
         foundedBeers.removeAll(keepCapacity: false)

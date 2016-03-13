@@ -4,6 +4,7 @@ import UIKit
 
 protocol SearchViewDelegate: class {
     func searchViewDidTriggerCloseAction(view: SearchView)
+    func searchViewDidTriggerSearchAction(term: String)
 }
 
 class SearchView: UIView, UITextFieldDelegate {
