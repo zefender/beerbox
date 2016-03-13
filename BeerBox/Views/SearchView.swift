@@ -15,8 +15,11 @@ class SearchView: UIView, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        closeButton.setTitle("X", forState: .Normal)
+        closeButton.setTitle("cancel", forState: .Normal)
         closeButton.addTarget(self, action: "closeButtonDidTaped:", forControlEvents: .TouchUpInside)
+        closeButton.backgroundColor = Colors.tintColor
+        closeButton.layer.cornerRadius = 4
+        closeButton.titleLabel!.font = UIFont(name: "Helvetica", size: 12)
 
         searchTextField.delegate = self
         searchTextField.returnKeyType = .Search
@@ -46,8 +49,9 @@ class SearchView: UIView, UITextFieldDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        searchTextField.frame = CGRect(x: 0, y: 0, width: width - 44, height: height)
-        closeButton.frame = CGRect(x: searchTextField.right, y: 0, width: height, height: height)
+        searchTextField.frame = CGRect(x: 0, y: 0, width: width - 99, height: height)
+        closeButton.frame = CGRect(x: searchTextField.right + 16, y: 0, width: 51, height: 24)
+        closeButton.centerY = centerY
     }
 
     required init?(coder aDecoder: NSCoder) {
