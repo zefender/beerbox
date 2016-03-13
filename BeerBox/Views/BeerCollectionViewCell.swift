@@ -15,6 +15,7 @@ class BeerCollectionViewCell: UICollectionViewCell {
     private let beerImage = UIImageView()
     private let ibuLabel = UILabel()
     private let styleLabel = UILabel()
+    private let checkedImageView = UIImageView()
 
     private let shadowView: UIView = UIView()
     private let containerView: UIView = UIView()
@@ -36,7 +37,7 @@ class BeerCollectionViewCell: UICollectionViewCell {
         styleLabel.font = UIFont(name: "Helvetica-Neue", size: 13)
         styleLabel.textColor = Colors.grayFont
 
-        ibuLabel.font = UIFont(name: "Helvetica-Neue", size: 15)
+        ibuLabel.font = UIFont(name: "Helvetica-Neue", size: 13)
         ibuLabel.textColor = Colors.tintColor
 
         let layer = shadowView.layer
@@ -53,6 +54,7 @@ class BeerCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(beerImage)
         containerView.addSubview(ibuLabel)
         containerView.addSubview(styleLabel)
+        contentView.addSubview(checkedImageView)
     }
 
     func setName(name: String) {
@@ -60,8 +62,12 @@ class BeerCollectionViewCell: UICollectionViewCell {
     }
 
 
-    func setBeerImage(image: UIImage) {
+    func setBeerImage(image: UIImage?) {
         beerImage.image = image
+    }
+
+    func setCheckedImage(image: UIImage?) {
+        checkedImageView.image = image
     }
 
     func setIBU(ibu: String) {
@@ -83,6 +89,7 @@ class BeerCollectionViewCell: UICollectionViewCell {
         shadowView.centerX = contentView.centerX
 
         beerImage.frame = CGRect(x: 0, y: 0, width: width, height: 136)
+        checkedImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         nameLabel.frame = CGRect(x: rigthOffset, y: beerImage.bottom + 8, width: width, height: 20)
         styleLabel.frame = CGRect(x: rigthOffset, y: nameLabel.bottom + 8, width: width, height: 20)
         ibuLabel.frame = CGRect(x: rigthOffset, y: styleLabel.bottom + 8, width: width, height: 20)

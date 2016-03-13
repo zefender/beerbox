@@ -108,8 +108,9 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
             cell.setName(beer.name)
             cell.setStyle(beer.style)
-            cell.setBeerImage(UIImage(named: "Guinness")!)
-            cell.setIBU(String(beer.IBU))
+            cell.setBeerImage(UIImage(named: "Guinness"))
+            cell.setIBU("IBU: \(beer.IBU)")
+            cell.setCheckedImage(UIImage(named: "Check"))
 //            if let photo = DataManager.instance.photoForBeer(beer) {
 //                cell.setBeerImage(photo)
 //            }
