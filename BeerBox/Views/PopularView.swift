@@ -52,6 +52,10 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
             cell.setStyle(beer.style)
             cell.setIBU(String(beer.IBU))
 
+            if beer.inStash {
+                cell.setChekedImage(UIImage(named: "Check"))
+            }
+
             photoLoader(beer.labelImageUrl) {
                 (image) in
                 if let image = image {

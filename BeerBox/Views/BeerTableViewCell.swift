@@ -13,6 +13,7 @@ class BeerTableViewCell: UITableViewCell {
     private let styleLabel = UILabel()
     private let ibuLabel = UILabel()
     private let beerImageView: UIImageView = UIImageView()
+    private let checkedImageView = UIImageView()
 
     private let shadowView: UIView = UIView()
     private let containerView: UIView = UIView()
@@ -51,6 +52,7 @@ class BeerTableViewCell: UITableViewCell {
         containerView.addSubview(styleLabel)
         containerView.addSubview(beerImageView)
         containerView.addSubview(ibuLabel)
+        containerView.addSubview(checkedImageView)
     }
 
 
@@ -64,6 +66,10 @@ class BeerTableViewCell: UITableViewCell {
 
     func setBeerImage(image: UIImage) {
         beerImageView.image = image
+    }
+
+    func setChekedImage(image: UIImage?) {
+        checkedImageView.image = image
     }
 
     func setIBU(ibu: String) {
@@ -82,6 +88,8 @@ class BeerTableViewCell: UITableViewCell {
         shadowView.centerX = centerX
 
         beerImageView.frame = CGRect(x: 0, y: 0, width: 88, height: 88)
+
+        checkedImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
 
         nameLabel.frame = CGRect(x: beerImageView.right + 10, y: 6, width: containerView.width - beerImageView.width - 20, height: 44)
         nameLabel.sizeToFit()
