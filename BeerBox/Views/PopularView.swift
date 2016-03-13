@@ -30,7 +30,7 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
         addSubview(popularTableView)
     }
 
-    func showBeers(beers: [BeerItem], photoLoader: (String, (UIImage?) -> ()) -> ()) {
+    func showBeers(beers: [BeerItem], photoLoader: ((String, (UIImage?) -> ()) -> ())?) {
         self.photoLoader = photoLoader
         beersModel = beers
         popularTableView.reloadData()

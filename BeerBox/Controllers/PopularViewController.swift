@@ -33,7 +33,7 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
 
         setDefaultsNavigationBarAppearance()
 
-        fetchBeers()
+        fetchPopularBeers()
     }
 
     func setDefaultsNavigationBarAppearance() {
@@ -55,7 +55,32 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
     }
 
 
-    private func fetchBeers() {
+    private func fetchPopularBeers() {
+        DataManager.instance.searchBeersWithTerm("term") {
+            (beers, error) in
+            if error.hasError {
+                self.showAlertForError(error)
+            } else if let beers = beers {
+                self.beers = beers
+
+                self.beerListView.showBeers(beers, photoLoader: {
+                    (url, completionHandler) -> () in
+
+                    DataManager.instance.loadPhotoForUrl(url) {
+                        (image, error) -> () in
+
+                        if error.hasError {
+                            self.showAlertForError(error)
+                        } else {
+                            completionHandler(image)
+                        }
+                    }
+                })
+            }
+        }
+    }
+
+    private func searchBeers(term: String) {
         DataManager.instance.searchBeersWithTerm("term") {
             (beers, error) in
             if error.hasError {
@@ -92,6 +117,8 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
         searchView.delegate = self
         searchView.setFirstResponder()
 
+        beerListView.showBeers([BeerItem](), photoLoader: nil)
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchView)
         navigationItem.rightBarButtonItem = nil
     }
@@ -107,6 +134,9 @@ class PopularViewController: ViewController, PopularViewDelegate, SearchViewDele
     }
 
     func searchViewDidTriggerCloseAction(view: SearchView) {
+        foundedBeers.removeAll(keepCapacity: false)
         setDefaultsNavigationBarAppearance()
+
+        fetchPopularBeers()
     }
 }

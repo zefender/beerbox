@@ -17,6 +17,10 @@ class ShadowNavigationController: UINavigationController {
         shadowLayer.shadowRadius = 20
     }
 
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
