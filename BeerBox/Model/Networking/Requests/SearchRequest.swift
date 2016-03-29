@@ -1,24 +1,22 @@
 import Foundation
 
 class SearchRequest: Request {
-    override func httpMethod() -> HTTPMethod {
-        return super.httpMethod()
+    private let term: String
+
+    init(term: String) {
+        self.term = term
     }
 
-    override func parameters() -> [String:AnyObject]? {
-        return super.parameters()
+
+    override func httpMethod() -> HTTPMethod {
+        return .GET
     }
 
     override func method() -> String {
-        return super.method()
-    }
-
-    override func path() -> String {
-        return super.path()
+        return "search/beer"
     }
 
     override func queryString() -> String {
-        return super.queryString()
+        return "q=\(term)"
     }
-
 }

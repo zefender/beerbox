@@ -7,30 +7,30 @@ import Foundation
 
 class BeerListParser: Parser {
     override func scanObject(parsedJson: [String:AnyObject]) -> Any? {
-        var beerListModel = BeerList(found: 0, beers: nil)
+        var beerListModel = [BeerItem]()
 
-        if let found = parsedJson["found"] as? Int {
-            beerListModel.found = found
-        }
+        if let response = parsedJson["response"] {
+            if let beers = response["beers"] as? NSDictionary {
+                if let items = beers["items"] as? NSArray {
+                    for item in items as NSArray {
+                        var breweryId = 0
 
-        if let beers = parsedJson["beers"] {
-            if let items = beers["items"] as! NSArray? {
-                var beerList = [BeerItem]()
+                        if let brewery = item["brewery"] as? NSDictionary {
+                            breweryId = Int(brewery["brewery_id"] as? Int ?? 0)
+                        }
 
-                for item in items {
-                    let beer = item["beer"] as! NSDictionary
+                        let beer = item["beer"] as! NSDictionary
 
-                    beerList.append(BeerItem(bid: Int(beer["bid"] as? Int ?? 0), name: String(beer["beer_name"]!),
-                            labelImageUrl: String(beer["beer_label"]!), ABV: Int(beer["beer_abv"] as? Int ?? 0),
-                            IBU: Int(beer["beer_ibu"] as? Int ?? 0), descr: String(beer["beer_description"]!),
-                            style: String(beer["beer_style"]!), breweryId: 1, inStash: false))
+                        beerListModel.append(BeerItem(bid: Int(beer["bid"] as? Int ?? 0), name: String(beer["beer_name"]!),
+                                labelImageUrl: String(beer["beer_label"]!), ABV: Int(beer["beer_abv"] as? Int ?? 0),
+                                IBU: Int(beer["beer_ibu"] as? Int ?? 0), descr: String(beer["beer_description"]!),
+                                style: String(beer["beer_style"]!), breweryId: breweryId, inStash: false))
+                    }
                 }
 
-                beerListModel.beers = beerList
             }
         }
 
         return beerListModel
     }
-
 }

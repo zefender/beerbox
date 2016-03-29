@@ -20,11 +20,38 @@ class BeerViewController: UIViewController, BeerViewDelegate {
     var beer: BeerItem?
 
     func beerViewDidTriggerBreweryAction(view: BeerView) {
-       let controller = BreweryViewController()
-       navigationController?.presentViewController(controller, animated: true, completion: nil)
+        if let beer = beer {
+            let controller = BreweryViewController()
+            controller.breweryId = beer.breweryId
+            presentViewController(controller, animated: true, completion: nil)
+        }
     }
 
-    func beerViewDidTriggerRemoveAction(view: BeerView) {
+    override func loadView() {
+        beerView.beerViewDelegate = self
+        view = beerView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        automaticallyAdjustsScrollViewInsets = false
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: ""), style: .Plain, target: self,
+                action: "deleteFromStashDidTapped:")
+
+        if let beer = beer as BeerItem? {
+            beerView.setBeer(beer)
+            beerView.setBeerImage(DataManager.instance.photoForBeer(beer))
+            title = beer.name
+
+            if let brewery = DataManager.instance.brewery(beer.breweryId) {
+                beerView.setBrewery(brewery)
+            }
+        }
+    }
+
+    func deleteFromStashDidTapped(sender: AnyObject) {
         if let beer = beer {
             DataManager.instance.removeBeerFromStash(beer)
             navigationController?.popViewControllerAnimated(true)
@@ -32,17 +59,10 @@ class BeerViewController: UIViewController, BeerViewDelegate {
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
-    override func loadView() {
-        beerView.delegate = self
-        view = beerView
+        beerView.setInsets(UIEdgeInsets(top: topLayoutGuide.length, left: 0, bottom: 0, right: 0))
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        beerView.setName("Punk IPA")
-    }
-
 
 }

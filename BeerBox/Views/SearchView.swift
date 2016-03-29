@@ -30,8 +30,15 @@ class SearchView: UIView, UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        if let text = textField.text {
+            textField.resignFirstResponder()
+            delegate?.searchViewDidTriggerSearchAction(text.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()))
+
+            return true
+        }
+
+        return false
     }
 
 

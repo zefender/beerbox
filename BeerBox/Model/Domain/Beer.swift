@@ -2,7 +2,7 @@
 //  Beer.swift
 //  BeerBox
 //
-//  Created by Кузяев Максим on 23.02.16.
+//  Created by Кузяев Максим on 27.03.16.
 //  Copyright © 2016 zefender. All rights reserved.
 //
 

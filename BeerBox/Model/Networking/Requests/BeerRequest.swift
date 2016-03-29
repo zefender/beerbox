@@ -8,14 +8,10 @@ class BeerRequest: Request {
     }
 
     override func httpMethod() -> HTTPMethod {
-        return HTTPMethod.GET
+        return .GET
     }
 
     override func method() -> String {
-        return "beer/info/"
-    }
-
-    override func path() -> String {
-        return String(bid)
+        return "beer/info/\(bid)"
     }
 }

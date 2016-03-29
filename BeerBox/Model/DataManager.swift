@@ -14,26 +14,32 @@ class DataManager {
     private let imageStorage = ImageDataManager()
 
     func addBeerToStash(beerId: Int, completion: (Error) -> ()) {
-        // load beer's details
-        fetchBeerWithId(beerId) {
-            fetchedBeer, error in
-            if let beer = fetchedBeer {
-                // Do we have brewery for beer?
-                if !self.coreDataSource.breweryIsStored(beer.bid) {
-                    // load and save the brewery
-                    self.fetchBreweryWithId(beer.breweryId) {
-                        brewery, error in
-                        if let brewery = brewery {
-                            // save to local store
-                            self.coreDataSource.addBrewery(brewery)
+        if !coreDataSource.beerIsStashed(beerId) {
+            // load beer's details
+            fetchBeerWithId(beerId) {
+                fetchedBeer, error in
+                if let beer = fetchedBeer {
+                    // Do we have brewery for beer?
+                    if !self.coreDataSource.breweryIsStored(beer.breweryId) {
+                        // load and save the brewery
+                        self.fetchBreweryWithId(beer.breweryId) {
+                            brewery, error in
+                            if let brewery = brewery {
+                                // save to local store
+                                self.coreDataSource.addBrewery(brewery)
 
-                            // save beer to local store
-                            self.coreDataSource.addBeerToStash(beer)
+                                // save beer to local store
+                                self.coreDataSource.addBeerToStash(beer)
+                                completion(error)
+                            }
                         }
-                    }
 
-                    // save beer to local store
-                    self.coreDataSource.addBeerToStash(beer)
+                    } else {
+                        // save beer to local store
+                        self.coreDataSource.addBeerToStash(beer)
+
+                        completion(error)
+                    }
                 }
             }
         }
@@ -50,7 +56,7 @@ class DataManager {
                 if let brewery = BreweryParser(data: data).parse() as? BreweryItem {
 
                     // load label
-                    self.loadPhotoForUrl(/*brewery.labelImageUrl*/ "") {
+                    self.loadPhotoForUrl(brewery.labelImageUrl) {
                         image, error in
 
                         if let image = image {
@@ -74,13 +80,11 @@ class DataManager {
         apiClient.sendRequest(request) {
             data, error in
 
-            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-
             if let data = data {
                 if let beer = BeerParser(data: data).parse() as? BeerItem {
 
                     // load label
-                    self.loadPhotoForUrl(/*brewery.labelImageUrl*/ "") {
+                    self.loadPhotoForUrl(beer.labelImageUrl) {
                         image, error in
 
                         if let image = image {
@@ -100,42 +104,35 @@ class DataManager {
 
 
     func fetchStash() -> [BeerItem]? {
-//        if let stash = coreDataSource.stash() as [Beer]? {
-//            return stash.map {
-//                beer in
-//                return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
-//                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
-//                        breweryId: 1 /*beer.breweryId*/, inStash: true)
-//            }
-//        } else {
-//            return nil
-//        }
+        if let stash = coreDataSource.stash() as [Beer]? {
+            return stash.map {
+                beer in
 
-        var stash = [BeerItem]()
+                var breweryId = 0
 
-        stash.append(BeerItem(bid: 1, name: "Guinness", labelImageUrl: "", ABV: 17, IBU: 44, descr: "Awesome beer",
-        style: "Stout", breweryId: 1, inStash: true))
+                if let brewery = beer.brewery {
+                    breweryId = Int(brewery.bid ?? 0)
+                }
 
-        stash.append(BeerItem(bid: 1, name: "Redrum", labelImageUrl: "", ABV: 17, IBU: 45, descr: "Awesome beer",
-                style: "DIPA", breweryId: 1, inStash: true))
-
-        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
-                style: "IPA", breweryId: 1, inStash: true))
-
-        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
-                style: "IPA", breweryId: 1, inStash: true))
-
-        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
-                style: "IPA", breweryId: 1, inStash: true))
-
-        stash.append(BeerItem(bid: 1, name: "Punk IPA", labelImageUrl: "", ABV: 17, IBU: 123, descr: "Awesome beer",
-                style: "IPA", breweryId: 1, inStash: true))
-
-        return stash
+                return BeerItem(bid: Int(beer.bid ?? 0), name: beer.name ?? "", labelImageUrl: beer.labelImageUrl ?? "",
+                        ABV: Int(beer.abv ?? 0), IBU: Int(beer.ibu ?? 0), descr: beer.descr ?? "", style: beer.style ?? "",
+                        breweryId: breweryId, inStash: true)
+            }
+        } else {
+            return nil
+        }
     }
 
     func photoForBeer(beer: BeerItem) -> UIImage? {
         if let image = imageStorage.fetchImageWithFileName(String(beer.bid)) {
+            return image
+        } else {
+            return nil
+        }
+    }
+
+    func photoForBrewery(brewery: BreweryItem) -> UIImage? {
+        if let image = imageStorage.fetchImageWithFileName(String(brewery.bid)) {
             return image
         } else {
             return nil
@@ -147,28 +144,31 @@ class DataManager {
         coreDataSource.removeBeer(beer)
 
         // remove brewery if it was last beer
-        if let brewery = coreDataSource.breweryById(beer.breweryId) {
-            if brewery.beersInStash == 0 {
-                coreDataSource.removeBreweryById(brewery.bid)
-            }
-        }
+//        if let brewery = coreDataSource.breweryById(beer.breweryId) {
+//            if brewery.beersInStash == 0 {
+//                coreDataSource.removeBreweryById(brewery.bid)
+//            }
+//        }
+    }
+
+    func brewery(bid: Int) -> BreweryItem? {
+        return coreDataSource.breweryById(bid)
     }
 
     func searchBeersWithTerm(term: String, completionHandler: ([BeerItem]?, Error) -> ()) {
-        if let path = NSBundle.mainBundle().pathForResource("beers", ofType: "json") {
-            do {
-                let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-                let parsed = BeerListParser(data: jsonData).parse() as! BeerList
+        let request = SearchRequest(term: term)
+
+        apiClient.sendRequest(request) {
+            data, error in
+            if let data = data {
+                let parsed = BeerListParser(data: data).parse() as! [BeerItem]
 
                 // set inStash
-                if let beers = parsed.beers {
-                    for var beer in beers {
-                        beer.inStash = coreDataSource.beerIsStashed(beer.bid)
-                    }
+                for var beer in parsed {
+                    beer.inStash = self.coreDataSource.beerIsStashed(beer.bid)
                 }
 
-                completionHandler(parsed.beers, Error(error: nil))
-            } catch {
+                completionHandler(parsed, Error(error: nil))
             }
         }
     }
@@ -187,4 +187,5 @@ class DataManager {
             })
         }
     }
+
 }

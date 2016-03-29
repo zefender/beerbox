@@ -87,7 +87,7 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 136, height: 245)
+        return CGSize(width: 126, height: 235)
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
@@ -108,12 +108,10 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
             cell.setName(beer.name)
             cell.setStyle(beer.style)
-            cell.setBeerImage(UIImage(named: "Guinness"))
             cell.setIBU("IBU: \(beer.IBU)")
-            cell.setCheckedImage(UIImage(named: "Check"))
-//            if let photo = DataManager.instance.photoForBeer(beer) {
-//                cell.setBeerImage(photo)
-//            }
+            if let photo = DataManager.instance.photoForBeer(beer) {
+                cell.setBeerImage(photo)
+            }
         }
 
         return cell

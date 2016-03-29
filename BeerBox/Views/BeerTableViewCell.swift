@@ -91,14 +91,13 @@ class BeerTableViewCell: UITableViewCell {
 
         checkedImageView.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
 
-        nameLabel.frame = CGRect(x: beerImageView.right + 10, y: 6, width: containerView.width - beerImageView.width - 20, height: 44)
-        nameLabel.sizeToFit()
+        let labelsWidth = containerView.width - beerImageView.right - 20
 
-        styleLabel.frame = CGRect(x: beerImageView.right + 10, y: nameLabel.bottom + 6, width: containerView.width - beerImageView.width - 16, height: 44)
-        styleLabel.sizeToFit()
+        nameLabel.frame = CGRect(x: beerImageView.right + 10, y: 6, width: labelsWidth, height: 20)
 
-        ibuLabel.frame = CGRect(x: beerImageView.right + 10, y: styleLabel.bottom + 6, width: containerView.width - beerImageView.width - 20, height: 44)
-        ibuLabel.sizeToFit()
+        styleLabel.frame = CGRect(x: beerImageView.right + 10, y: nameLabel.bottom + 6, width: labelsWidth, height: 20)
+
+        ibuLabel.frame = CGRect(x: beerImageView.right + 10, y: styleLabel.bottom + 6, width: labelsWidth, height: 20)
 
         for view in subviews {
             let className = NSStringFromClass(view.dynamicType)

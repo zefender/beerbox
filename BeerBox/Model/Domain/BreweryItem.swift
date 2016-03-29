@@ -1,6 +1,12 @@
 import Foundation
 
 struct BreweryItem {
-    let bid: Int
-    let beersInStash: Int
+    var bid: Int
+    var labelImageUrl: String
+    var name: String
+    var address: String
+    var lon: Double
+    var lat: Double
+    var about: String
+    var country: String
 }

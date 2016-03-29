@@ -17,12 +17,18 @@ enum BeerKeys: String {
     case LabelImageUrl = "labelImageUrl"
     case Name = "name"
     case Style = "style"
+    case Brewery = "brewery"
 }
 
 enum BreweryKeys: String {
     case Id = "bid"
     case Latitude = "lat"
     case Longitude = "lon"
+    case Country = "country"
+    case Descr = "descr"
+    case Name = "name"
+    case Address = "address"
+    case LabelImageUrl = "imageLabelUrl"
 }
 
 class CoreDataDataSource {
@@ -38,8 +44,39 @@ class CoreDataDataSource {
         beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)
         beer.setValue(model.style, forKey: BeerKeys.Style.rawValue)
 
+        // get brewery
+        if let brewery = brewery(model.breweryId) {
+            beer.setValue(brewery, forKey: BeerKeys.Brewery.rawValue)
+        }
+
         saveContext()
     }
+
+    private func brewery(id: Int) -> Brewery? {
+        let fetchRequest = NSFetchRequest(entityName: "Brewery")
+        fetchRequest.predicate = NSPredicate(format: "bid == %d", id)
+
+        do {
+            if let brewers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
+                return brewers.first
+            }
+        } catch {
+            print(error)
+        }
+
+        return nil
+    }
+
+    func breweryById(id: Int) -> BreweryItem? {
+        if let brewery = brewery(id) {
+            return BreweryItem(bid: brewery.bid!.integerValue, labelImageUrl: brewery.imageLabelUrl ?? "",
+                    name: brewery.name ?? "", address: brewery.name ?? "", lon: Double(brewery.lon ?? 0),
+                    lat: Double(brewery.lat ?? 0), about: brewery.descr ?? "", country: brewery.country ?? "")
+        }
+
+        return nil
+    }
+
 
     func stash() -> [Beer]? {
         let fetchRequest = NSFetchRequest(entityName: "Beer")
@@ -70,26 +107,17 @@ class CoreDataDataSource {
         }
     }
 
-    func breweryById(id: Int) -> BreweryItem? {
-        let fetchRequest = NSFetchRequest(entityName: "Brewery")
-        fetchRequest.predicate = NSPredicate(format: "bid == %d", id)
-
-        do {
-            if let brewers = try managedObjectContext.executeFetchRequest(fetchRequest) as? [Brewery] {
-                if let brewery = brewers.first {
-                    return BreweryItem(bid: brewery.bid!.integerValue, beersInStash: brewery.beers!.count)
-                }
-            }
-        } catch {
-            print(error)
-        }
-
-        return nil
-    }
 
     func addBrewery(brewery: BreweryItem) {
         let breweryMO = NSEntityDescription.insertNewObjectForEntityForName("Brewery", inManagedObjectContext: managedObjectContext)
         breweryMO.setValue(brewery.bid, forKey: BreweryKeys.Id.rawValue)
+        breweryMO.setValue(brewery.country, forKey: BreweryKeys.Country.rawValue)
+        breweryMO.setValue(brewery.about, forKey: BreweryKeys.Descr.rawValue)
+        breweryMO.setValue(brewery.name, forKey: BreweryKeys.Name.rawValue)
+        breweryMO.setValue(brewery.address, forKey: BreweryKeys.Address.rawValue)
+        breweryMO.setValue(brewery.labelImageUrl, forKey: BreweryKeys.LabelImageUrl.rawValue)
+        breweryMO.setValue(brewery.lat, forKey: BreweryKeys.Latitude.rawValue)
+        breweryMO.setValue(brewery.lon, forKey: BreweryKeys.Longitude.rawValue)
 
         saveContext()
     }

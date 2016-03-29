@@ -5,77 +5,152 @@
 
 import Foundation
 import UIKit
+import Cosmos
 
 
 protocol BeerViewDelegate: class {
     func beerViewDidTriggerBreweryAction(view: BeerView)
-    func beerViewDidTriggerRemoveAction(view: BeerView)
 }
 
-class BeerView: UIView {
-    weak var delegate: BeerViewDelegate?
+class BeerView: UIScrollView, BreweryButtonDelegate {
+    weak var beerViewDelegate: BeerViewDelegate?
 
-    private let breweryButton: UIButton = UIButton()
-    private let removeButton: UIButton = UIButton()
+    private let topView: UIView = UIView()
+    private let mainContainerView: UIView = UIView()
+    private let imageContainerView: ShadowView = ShadowView()
+
+    private let breweryButton: BreweryButton = BreweryButton()
+    private let breweryButtonContainer: ShadowView = ShadowView()
     private let nameLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let beerImage = UIImageView()
     private let ibuLabel = UILabel()
-    private let abvLabel = UILabel()
     private let styleLabel = UILabel()
+    private let ratingControl: CosmosView = CosmosView()
 
 
-    func setName(name: String) {
-        nameLabel.text = name
+    func setBeer(beer: BeerItem) {
+        nameLabel.text = beer.name
+        styleLabel.text = beer.style
+        ibuLabel.text = "IBU: \(beer.IBU)"
+        descriptionLabel.text = beer.descr
     }
 
-    func setDescr(descr: String) {
-        descriptionLabel.text = descr
+    func setBrewery(brewery: BreweryItem) {
+        breweryButton.setCountryTitle(brewery.country)
+        breweryButton.setTitle("Brewery")
+        breweryButton.setNameTitle(brewery.name)
     }
 
-    func setStyle(style: String) {
-        styleLabel.text = style
-    }
 
+    func setBeerImage(image: UIImage?) {
+        beerImage.image = image
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = UIColor.brownColor()
+        breweryButton.delegate = self
+        breweryButtonContainer.setCornerRaduis(4)
+        breweryButton.layer.cornerRadius = 4
 
-        breweryButton.setTitle("Brewery", forState: .Normal)
-        breweryButton.addTarget(self, action: "breweryButtonDidTapped:", forControlEvents: .TouchUpInside)
+        topView.backgroundColor = Colors.tintColor
+        mainContainerView.backgroundColor = Colors.background
+        backgroundColor = Colors.tintColor
 
-        removeButton.setTitle("Remove from stash", forState: .Normal)
-        removeButton.addTarget(self, action: "removeButtonDidTapped:", forControlEvents: .TouchUpInside)
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.textAlignment = .Center
+        descriptionLabel.font = UIFont(name: "Helvetica", size: 14)
+        descriptionLabel.textColor = Colors.tintColor
 
-        addSubview(breweryButton)
+        nameLabel.textAlignment = .Center
+        nameLabel.font = UIFont(name: "Helvetica", size: 24)
+        nameLabel.textColor = Colors.tintColor
 
-        addSubview(nameLabel)
-        addSubview(descriptionLabel)
-        addSubview(beerImage)
-        addSubview(ibuLabel)
-        addSubview(abvLabel)
-        addSubview(styleLabel)
-        addSubview(removeButton)
-    }
+        styleLabel.textAlignment = .Center
+        styleLabel.font = UIFont(name: "Helvetica", size: 13)
+        styleLabel.textColor = Colors.grayFont
 
-    func breweryButtonDidTapped(sender: AnyObject) {
-        delegate?.beerViewDidTriggerBreweryAction(self)
-    }
+        ibuLabel.textAlignment = .Center
+        ibuLabel.font = UIFont(name: "Helvetica", size: 13)
+        ibuLabel.textColor = Colors.tintColor
 
-    func removeButtonDidTapped(sender: AnyObject) {
-        delegate?.beerViewDidTriggerRemoveAction(self)
+        imageContainerView.setCornerRaduis(4)
+
+        beerImage.layer.cornerRadius = 4
+
+        addSubview(topView)
+        addSubview(mainContainerView)
+        addSubview(imageContainerView)
+
+        imageContainerView.addView(beerImage)
+        imageContainerView.addView(ratingControl)
+
+        mainContainerView.addSubview(nameLabel)
+        mainContainerView.addSubview(descriptionLabel)
+        mainContainerView.addSubview(ibuLabel)
+        mainContainerView.addSubview(styleLabel)
+        mainContainerView.addSubview(breweryButtonContainer)
+        breweryButtonContainer.addView(breweryButton)
+
+        ratingControl.rating = 4
+        ratingControl.settings.starSize = 18
+        ratingControl.settings.emptyColor = Colors.disabled
+        ratingControl.settings.emptyBorderColor = Colors.disabled
+        ratingControl.settings.filledBorderWidth = 0
+        ratingControl.settings.filledColor = Colors.orangeFont
+        ratingControl.settings.fillMode = .Full
+        ratingControl.settings.starMargin = 3
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        nameLabel.frame = CGRect(x: 0, y: 0, width: width, height: 44)
-        breweryButton.frame = CGRect(x: 0, y: height - 44, width: 100, height: 44)
-        breweryButton.centerX = centerX
+        topView.frame = CGRect(x: 0, y: 0, width: width, height: 186)
+        imageContainerView.frame = CGRect(x: 0, y: 24, width: 160, height: 205)
+        imageContainerView.centerX = centerX
 
-        removeButton.frame = CGRect(x: 0, y: 100, width: width, height: 44)
+        let contentWidth = width - 48
+
+        nameLabel.frame = CGRect(x: 0, y: 72, width: contentWidth, height: 22)
+        nameLabel.sizeToFit()
+        nameLabel.centerX = bounds.centerX
+
+        styleLabel.frame = CGRect(x: 0, y: nameLabel.bottom + 8, width: contentWidth, height: 22)
+        styleLabel.sizeToFit()
+        styleLabel.centerX = bounds.centerX
+
+        ibuLabel.frame = CGRect(x: 0, y: styleLabel.bottom + 8, width: contentWidth, height: 22)
+        ibuLabel.sizeToFit()
+        ibuLabel.centerX = bounds.centerX
+
+        descriptionLabel.frame = CGRect(x: 0, y: ibuLabel.bottom + 16, width: contentWidth, height: 0)
+        descriptionLabel.centerX = bounds.centerX
+        descriptionLabel.sizeToFit()
+
+
+        breweryButtonContainer.frame = CGRect(x: 0, y: descriptionLabel.bottom + 8, width: contentWidth, height: 64)
+        breweryButtonContainer.centerX = bounds.centerX
+
+        breweryButton.frame = breweryButtonContainer.bounds
+
+        beerImage.frame = CGRect(x: 12, y: 12, width: 136, height: 136)
+        ratingControl.frame = CGRect(x: 12, y: beerImage.bottom + 16, width: 100, height: 16)
+        ratingControl.centerX = imageContainerView.bounds.centerX
+
+        mainContainerView.frame = CGRect(x: 0, y: topView.bottom, width: width,
+                height: topView.bottom + breweryButtonContainer.bottom + 24)
+
+        contentSize = CGSize(width: width,height: mainContainerView.bounds.bottom)
+
+    }
+
+    func setInsets(insets: UIEdgeInsets) {
+        contentInset = insets
+    }
+
+    func breweryButtonDidTapped(view: BreweryButton) {
+        beerViewDelegate?.beerViewDidTriggerBreweryAction(self)
     }
 
 

@@ -6,6 +6,5 @@
 import Foundation
 
 struct BeerList {
-    var found: Int
     var beers: [BeerItem]?
 }

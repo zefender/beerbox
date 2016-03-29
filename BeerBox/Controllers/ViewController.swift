@@ -17,4 +17,18 @@ class ViewController: UIViewController {
     override func shouldAutorotate() -> Bool {
         return false
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationController?.navigationBar.tintColor = Colors.tintColor
+        navigationController?.navigationBar.titleTextAttributes =
+                [NSFontAttributeName: UIFont(name: "Helvetica", size: 15)!,
+                 NSForegroundColorAttributeName: Colors.tintColor]
+    }
+
+    func switchNetworkActivity(inProgress: Bool) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = inProgress
+    }
+
 }

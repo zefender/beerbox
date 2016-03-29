@@ -18,8 +18,13 @@ class Parser {
     
     func parse() -> Any? {
         do {
+            print(NSString(data:data, encoding:NSUTF8StringEncoding) as! String)
+
             let object = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            return scanObject(object as! [String : AnyObject])
+
+            if let object = object as? [String : AnyObject] {
+                return scanObject(object)
+            }
         } catch let caught as NSError {
             print(caught.description)
         }

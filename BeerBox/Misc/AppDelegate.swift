@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
-        window!.rootViewController = ShadowNavigationController(rootViewController:  PopularViewController())
+        window!.rootViewController = ShadowNavigationController(rootViewController:  StashViewController())
         window!.makeKeyAndVisible()
 
         return true

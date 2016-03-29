@@ -6,38 +6,71 @@
 import Foundation
 import UIKit
 
-protocol PopularViewDelegate: class {
-    func popularView(view: PopularView, didTriggerStashActionForIndex index: Int)
+protocol SearchResultViewDelegate: class {
+    func searchResultView(view: SearchResultView, didTriggerStashActionForIndex index: Int)
 }
 
-class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
-    weak var delegate: PopularViewDelegate?
+enum SearchViewState {
+    case Loading, Normal
+}
+
+class SearchResultView: UIView, UITableViewDataSource, UITableViewDelegate {
+    weak var delegate: SearchResultViewDelegate?
 
     private var beersModel: [BeerItem]!
     private var photoLoader: ((String, (UIImage?) -> ()) -> ())!
 
-    private let popularTableView: UITableView = UITableView()
+    private let searchResultTableView: UITableView = UITableView()
+    private let dimmedView: UIView = UIView()
+    private let spinnerView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+
+    var state: SearchViewState = .Normal {
+        didSet {
+            switch state {
+            case .Normal:
+                dimmedView.fadeOut {
+                    finished in
+                    self.spinnerView.stopAnimating()
+                }
+            case .Loading:
+                dimmedView.fadeIn {
+                    finished in
+                    self.spinnerView.startAnimating()
+                }
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        popularTableView.registerClass(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.cellId)
-        popularTableView.delegate = self
-        popularTableView.dataSource = self
-        popularTableView.backgroundColor = UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
-        popularTableView.separatorStyle = .None
+        dimmedView.backgroundColor = Colors.tintColor
+        dimmedView.alpha = 0
 
-        addSubview(popularTableView)
+        searchResultTableView.registerClass(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.cellId)
+        searchResultTableView.delegate = self
+        searchResultTableView.dataSource = self
+        searchResultTableView.backgroundColor = UIColor(red: 253 / 255, green: 253 / 255, blue: 253 / 255, alpha: 1)
+        searchResultTableView.separatorStyle = .None
+        searchResultTableView.allowsSelection = false
+
+        addSubview(searchResultTableView)
+        addSubview(dimmedView)
+        dimmedView.addSubview(spinnerView)
     }
 
     func showBeers(beers: [BeerItem], photoLoader: ((String, (UIImage?) -> ()) -> ())?) {
         self.photoLoader = photoLoader
         beersModel = beers
-        popularTableView.reloadData()
+        searchResultTableView.reloadData()
+    }
+
+    func endAddingToStash() {
+        searchResultTableView.setEditing(false, animated: true)
     }
 
     func setInsets(insets: UIEdgeInsets) {
-        popularTableView.contentInset = insets
+        searchResultTableView.contentInset = insets
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,8 +111,7 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToStash = UITableViewRowAction(style: .Normal, title: "I have it!") {
             action, index in
-            self.delegate?.popularView(self, didTriggerStashActionForIndex: indexPath.row)
-            self.popularTableView.setEditing(false, animated: true)
+            self.delegate?.searchResultView(self, didTriggerStashActionForIndex: indexPath.row)
         }
 
         addToStash.backgroundColor = Colors.tintColor
@@ -100,7 +132,11 @@ class PopularView: UIView, UITableViewDataSource, UITableViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        popularTableView.frame = bounds
+        searchResultTableView.frame = bounds
+        dimmedView.frame = bounds
+
+        spinnerView.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        spinnerView.center = center
     }
 
     required init?(coder aDecoder: NSCoder) {
