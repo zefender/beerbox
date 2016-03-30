@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="Beer" representedClassName=".Beer" syncable="YES">
         <attribute name="abv" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="bid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ibu" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="labelImageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brewery" inverseName="beers" inverseEntity="Brewery" syncable="YES"/>
     </entity>
@@ -19,11 +21,12 @@
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lon" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="siteUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="beers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Beer" inverseName="brewery" inverseEntity="Beer" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Beer" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="Brewery" positionX="-288" positionY="12" width="128" height="195"/>
+        <element name="Beer" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="Brewery" positionX="-288" positionY="12" width="128" height="210"/>
     </elements>
 </model>

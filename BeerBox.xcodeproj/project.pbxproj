@@ -49,6 +49,11 @@
 		13F5DF216E128269AC2CF920 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F5D8378913864FE25B5FB0 /* ViewController.swift */; };
 		5AB1B5FB73428ED5BC91795A /* Pods_BeerBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D79646AEB301A1D5DB035D2 /* Pods_BeerBox.framework */; };
 		D0051F7E1C70EA8600B71705 /* BeerBoxDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0051F7C1C70EA8600B71705 /* BeerBoxDataModel.xcdatamodeld */; };
+		D048EB011CABBCCD0095F68D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EB001CABBCCD0095F68D /* SettingsViewController.swift */; };
+		D048EB031CABBD1C0095F68D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EB021CABBD1C0095F68D /* SettingsView.swift */; };
+		D048EB051CABBE860095F68D /* RadioControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EB041CABBE860095F68D /* RadioControl.swift */; };
+		D048EB0A1CABDF0A0095F68D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EB091CABDF0A0095F68D /* Settings.swift */; };
+		D048EB0C1CABDF510095F68D /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048EB0B1CABDF510095F68D /* SettingsManager.swift */; };
 		D0A854381CA80D3E0008766A /* CoreDataDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A854371CA80D3E0008766A /* CoreDataDataSource.swift */; };
 		D0A8543D1CA80EAF0008766A /* Beer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A854391CA80EAF0008766A /* Beer+CoreDataProperties.swift */; };
 		D0A8543E1CA80EAF0008766A /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A8543A1CA80EAF0008766A /* Beer.swift */; };
@@ -103,6 +108,11 @@
 		9D79646AEB301A1D5DB035D2 /* Pods_BeerBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeerBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0051F671C70DF2400B71705 /* BeerBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0051F7D1C70EA8600B71705 /* BeerBoxDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BeerBoxDataModel.xcdatamodel; sourceTree = "<group>"; };
+		D048EB001CABBCCD0095F68D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D048EB021CABBD1C0095F68D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D048EB041CABBE860095F68D /* RadioControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioControl.swift; sourceTree = "<group>"; };
+		D048EB091CABDF0A0095F68D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D048EB0B1CABDF510095F68D /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		D0A854371CA80D3E0008766A /* CoreDataDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataDataSource.swift; sourceTree = "<group>"; };
 		D0A854391CA80EAF0008766A /* Beer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Beer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D0A8543A1CA80EAF0008766A /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
@@ -145,6 +155,7 @@
 		13F5D14FB2E9B681FC25CE7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D048EB081CABDEF50095F68D /* Settings */,
 				13F5D157C80F373EF1BEDA44 /* Networking */,
 				13F5D0B7D2E2CAFC96149A77 /* CoreData */,
 				D0051F7C1C70EA8600B71705 /* BeerBoxDataModel.xcdatamodeld */,
@@ -189,6 +200,8 @@
 				13F5DA473A51C0A143038049 /* SearchView.swift */,
 				13F5D4A9FDEFFEBCC65B0D97 /* ShadowView.swift */,
 				13F5DD36F8847856C658A39F /* BreweryButton.swift */,
+				D048EB021CABBD1C0095F68D /* SettingsView.swift */,
+				D048EB041CABBE860095F68D /* RadioControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +243,7 @@
 				13F5DFA2803FC9934F89D8B5 /* BeerViewController.swift */,
 				13F5D8378913864FE25B5FB0 /* ViewController.swift */,
 				13F5D268D65F653C3332F257 /* SearchViewController.swift */,
+				D048EB001CABBCCD0095F68D /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -281,6 +295,15 @@
 				13F5DF90671E9A9304843785 /* Controllers */,
 			);
 			path = BeerBox;
+			sourceTree = "<group>";
+		};
+		D048EB081CABDEF50095F68D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D048EB091CABDF0A0095F68D /* Settings.swift */,
+				D048EB0B1CABDF510095F68D /* SettingsManager.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EFDF092CA0166670901AF4E4 /* Frameworks */ = {
@@ -423,12 +446,14 @@
 				13F5D8848DCB3EF5A000554E /* Request.swift in Sources */,
 				D0A8543D1CA80EAF0008766A /* Beer+CoreDataProperties.swift in Sources */,
 				13F5DCA4F9D00BA6BC58F5EE /* BreweryViewController.swift in Sources */,
+				D048EB0A1CABDF0A0095F68D /* Settings.swift in Sources */,
 				13F5D73AE14F6719C120AB9C /* SearchResultsView.swift in Sources */,
 				D0A854401CA80EAF0008766A /* Brewery.swift in Sources */,
 				13F5DB9ED3CEFA4D8B5702AD /* CGRectLayoutExtension.swift in Sources */,
 				13F5D878FDFACF3E10ACAAD9 /* ViewLayoutShortcuts.swift in Sources */,
 				13F5D9B0B4388D143B2E661A /* BeerTableViewCell.swift in Sources */,
 				13F5D7F6E87DAA52F52AB2E5 /* BeerListParser.swift in Sources */,
+				D048EB051CABBE860095F68D /* RadioControl.swift in Sources */,
 				13F5D939809C7F24426329E2 /* APIClient.swift in Sources */,
 				13F5DBFB6B2AF4F63136F67B /* BeerViewController.swift in Sources */,
 				13F5D9AC1369E3C2930DD968 /* BeerView.swift in Sources */,
@@ -444,16 +469,19 @@
 				13F5D747C55DE18390B8AC53 /* BeerList.swift in Sources */,
 				13F5DCB565DC4FA4D7C7997F /* BreweryItem.swift in Sources */,
 				D0A8543E1CA80EAF0008766A /* Beer.swift in Sources */,
+				D048EB031CABBD1C0095F68D /* SettingsView.swift in Sources */,
 				13F5DA65B972E1222C73B491 /* BreweryRequest.swift in Sources */,
 				13F5D2F0623778315E8C98FA /* BeerRequest.swift in Sources */,
 				13F5D2B2A67F442980BFD436 /* BreweryParser.swift in Sources */,
 				13F5D2B849E175AAC87B285C /* BeerParser.swift in Sources */,
 				13F5DB39328A211A03524388 /* TextField.swift in Sources */,
+				D048EB011CABBCCD0095F68D /* SettingsViewController.swift in Sources */,
 				13F5D9C1479329BE841B8F63 /* SearchRequest.swift in Sources */,
 				13F5DB9D29BBCA2A0D9C0897 /* Colors.swift in Sources */,
 				13F5DD8B911DAE91432C403E /* ShadowNavigationController.swift in Sources */,
 				13F5D0F01A9CE7D092229240 /* SearchView.swift in Sources */,
 				13F5D724A5096EE1DF86542E /* SearchViewController.swift in Sources */,
+				D048EB0C1CABDF510095F68D /* SettingsManager.swift in Sources */,
 				13F5DB048C15A64E4C636EF6 /* ShadowView.swift in Sources */,
 				13F5DAE39119D364C0F10BA2 /* BreweryButton.swift in Sources */,
 				13F5DCAEE47186313B711C58 /* UIViewExtensions.swift in Sources */,

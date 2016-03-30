@@ -18,6 +18,8 @@ enum BeerKeys: String {
     case Name = "name"
     case Style = "style"
     case Brewery = "brewery"
+    case Rating = "rating"
+    case Date = "dateAdded"
 }
 
 enum BreweryKeys: String {
@@ -29,6 +31,7 @@ enum BreweryKeys: String {
     case Name = "name"
     case Address = "address"
     case LabelImageUrl = "imageLabelUrl"
+    case Rating = "rating"
 }
 
 class CoreDataDataSource {
@@ -43,6 +46,8 @@ class CoreDataDataSource {
         beer.setValue(model.labelImageUrl, forKey: BeerKeys.LabelImageUrl.rawValue)
         beer.setValue(model.name, forKey: BeerKeys.Name.rawValue)
         beer.setValue(model.style, forKey: BeerKeys.Style.rawValue)
+        beer.setValue(model.rating, forKey: BeerKeys.Rating.rawValue)
+        beer.setValue(NSDate(), forKey: BeerKeys.Date.rawValue)
 
         // get brewery
         if let brewery = brewery(model.breweryId) {
@@ -71,7 +76,8 @@ class CoreDataDataSource {
         if let brewery = brewery(id) {
             return BreweryItem(bid: brewery.bid!.integerValue, labelImageUrl: brewery.imageLabelUrl ?? "",
                     name: brewery.name ?? "", address: brewery.name ?? "", lon: Double(brewery.lon ?? 0),
-                    lat: Double(brewery.lat ?? 0), about: brewery.descr ?? "", country: brewery.country ?? "")
+                    lat: Double(brewery.lat ?? 0), about: brewery.descr ?? "", country: brewery.country ?? "",
+                    beersInStash: brewery.beers?.count ?? 0, rating: Double(brewery.rating ?? 0))
         }
 
         return nil
@@ -118,6 +124,7 @@ class CoreDataDataSource {
         breweryMO.setValue(brewery.labelImageUrl, forKey: BreweryKeys.LabelImageUrl.rawValue)
         breweryMO.setValue(brewery.lat, forKey: BreweryKeys.Latitude.rawValue)
         breweryMO.setValue(brewery.lon, forKey: BreweryKeys.Longitude.rawValue)
+        breweryMO.setValue(brewery.rating, forKey: BreweryKeys.Rating.rawValue)
 
         saveContext()
     }

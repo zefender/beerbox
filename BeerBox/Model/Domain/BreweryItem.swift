@@ -9,4 +9,6 @@ struct BreweryItem {
     var lat: Double
     var about: String
     var country: String
+    var beersInStash: Int
+    var rating: Double
 }

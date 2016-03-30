@@ -10,7 +10,8 @@ class BreweryParser: Parser {
                         name: String(brewery["brewery_name"]!), address: String(location["brewery_address"]!),
                         lon: Double(location["brewery_lng"] as? Double ?? 0),
                         lat: Double(location["brewery_lat"] as? Double ?? 0),
-                        about: String(brewery["brewery_description"]!), country: String(brewery["country_name"]!))
+                        about: String(brewery["brewery_description"]!), country: String(brewery["country_name"]!),
+                        beersInStash: 0, rating: brewery["rating"]!["rating_score"] as? Double ?? 0)
             }
         }
 

@@ -9,27 +9,22 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/Assets.xcassets" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/ViewLayoutShortcuts.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Misc/CGRectLayoutExtension.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/TextField.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BreweryView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BreweryButton.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/ShadowNavigationController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchResultsView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/ShadowView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerTableViewCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerStashView.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BreweryViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/ViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/StashViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/SearchViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/BeerBoxDataModel.xcdatamodeld/BeerBoxDataModel.xcdatamodel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/beers.json" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Error.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/DataManager.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BreweryParser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerParser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/SearchRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/PopularRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/ImageDataManager.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/Brewery.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerList.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BreweryItem.swift" isTestSource="false" />
@@ -37,47 +32,52 @@
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/Beer+CoreDataProperties.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/Beer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Domain/BeerItem.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/ImageDataManager.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/CoreData/CoreDataDataSource.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BreweryParser.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/Parser.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerParser.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Parsers/BeerListParser.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/APIClient/APIClient.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BreweryRequest.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/BeerRequest.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/PopularRequest.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/Request.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Model/Networking/Requests/SearchRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerCollectionViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BreweryButton.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/TextField.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/ShadowNavigationController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/ShadowView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/SearchResultsView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BreweryView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerTableViewCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Views/BeerStashView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/StashViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BreweryViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/BeerViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/ViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BeerBox/Controllers/SearchViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Podfile" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.release.xcconfig" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-frameworks.sh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-acknowledgements.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-umbrella.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.modulemap" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-resources.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.debug.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-acknowledgements.markdown" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-umbrella.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-acknowledgements.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.modulemap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-frameworks.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.debug.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox.release.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods-BeerBox/Pods-BeerBox-resources.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos-dummy.m" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Info.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Cosmos/Cosmos-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosDefaultSettings.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosView.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosAccessibility.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosSize.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosLayerHelper.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/Helpers/CosmosTouchTarget.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosLocalizedRating.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/StarLayer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosRating.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/StarFillMode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosSize.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosLayers.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosText.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosLayerHelper.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/StarFillMode.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosTouch.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Cosmos/Cosmos/CosmosSettings.swift" isTestSource="false" />
     </content>

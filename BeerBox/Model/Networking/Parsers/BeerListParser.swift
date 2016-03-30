@@ -24,7 +24,7 @@ class BeerListParser: Parser {
                         beerListModel.append(BeerItem(bid: Int(beer["bid"] as? Int ?? 0), name: String(beer["beer_name"]!),
                                 labelImageUrl: String(beer["beer_label"]!), ABV: Int(beer["beer_abv"] as? Int ?? 0),
                                 IBU: Int(beer["beer_ibu"] as? Int ?? 0), descr: String(beer["beer_description"]!),
-                                style: String(beer["beer_style"]!), breweryId: breweryId, inStash: false))
+                            style: String(beer["beer_style"]!), breweryId: breweryId, inStash: false, rating: 0))
                     }
                 }
 

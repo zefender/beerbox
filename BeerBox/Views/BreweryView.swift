@@ -58,16 +58,17 @@ class BreweryView: UIView, MKMapViewDelegate {
 
         mainContainer.setCornerRaduis(4)
         mainContainer.setBackGroundColor(Colors.background)
+        mapContainer.setCornerRaduis(4)
         
         contentContainer.layer.cornerRadius = 4
         mapView.layer.cornerRadius = 4
 
         mapView.userInteractionEnabled = false
         mapView.delegate = self
+        
 
         imageContainer.setCornerRaduis(4)
 
-        ratingControl.rating = 4
         ratingControl.settings.starSize = 18
         ratingControl.settings.emptyColor = Colors.disabled
         ratingControl.settings.emptyBorderColor = Colors.disabled
@@ -140,6 +141,7 @@ class BreweryView: UIView, MKMapViewDelegate {
         nameLabel.text = brewery.name
         addressLabel.text = brewery.address
         descrLabel.text = brewery.about
+        ratingControl.rating = brewery.rating
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: brewery.lat, longitude: brewery.lon)

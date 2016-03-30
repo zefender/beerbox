@@ -15,4 +15,5 @@ struct BeerItem {
     let style: String
     let breweryId: Int
     var inStash: Bool
+    var rating: Double
 }

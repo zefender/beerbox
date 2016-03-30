@@ -14,7 +14,7 @@ class ShadowView: UIView {
         let layer = shadowView.layer
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowOpacity = 0.4
+        layer.shadowOpacity = 0.5
         layer.shadowRadius = 25
 
         addSubview(containerView)

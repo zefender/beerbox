@@ -11,6 +11,7 @@ class StashViewController: ViewController, BeerStashViewDelegate, BeerViewContro
     private var stash: [BeerItem]?
 
     private var searchButton: UIBarButtonItem!
+    private var settingsButton: UIBarButtonItem!
 
 
     // MARK: - VC lifecycle
@@ -21,7 +22,8 @@ class StashViewController: ViewController, BeerStashViewDelegate, BeerViewContro
 
         searchButton = UIBarButtonItem(image: UIImage(named: "SearchIcon"), style: .Plain,
                 target: self, action: "handleSearchButtonTap:")
-
+        
+        settingsButton = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action:"settingsDidTapped:")
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
@@ -52,9 +54,15 @@ class StashViewController: ViewController, BeerStashViewDelegate, BeerViewContro
         let controller = SearchViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func settingsDidTapped(sender: AnyObject) {
+        let controller = SettingsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
 
     func setDefaultsNavigationBarAppearance() {
         navigationItem.rightBarButtonItem = searchButton
+        navigationItem.leftBarButtonItem = settingsButton
         navigationController?.navigationBar.topItem?.title = "S T A S H"
     }
 

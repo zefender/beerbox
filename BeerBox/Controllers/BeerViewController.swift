@@ -37,8 +37,7 @@ class BeerViewController: UIViewController, BeerViewDelegate {
 
         automaticallyAdjustsScrollViewInsets = false
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: ""), style: .Plain, target: self,
-                action: "deleteFromStashDidTapped:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "moreDidTapped:")
 
         if let beer = beer as BeerItem? {
             beerView.setBeer(beer)
@@ -50,14 +49,26 @@ class BeerViewController: UIViewController, BeerViewDelegate {
             }
         }
     }
-
-    func deleteFromStashDidTapped(sender: AnyObject) {
-        if let beer = beer {
-            DataManager.instance.removeBeerFromStash(beer)
-            navigationController?.popViewControllerAnimated(true)
-            delegate?.beerViewControllerDidDeleteBeerFromStash(self)
+    
+    func moreDidTapped(sender: AnyObject) {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+    
+        let deleteAction = UIAlertAction(title: "Delete from stash", style: .Destructive) { action in
+            if let beer = self.beer {
+                DataManager.instance.removeBeerFromStash(beer)
+                self.navigationController?.popViewControllerAnimated(true)
+                self.delegate?.beerViewControllerDidDeleteBeerFromStash(self)
+            }
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        controller.addAction(deleteAction)
+        controller.addAction(cancelAction)
+        
+        presentViewController(controller, animated: true, completion: nil)
     }
+
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

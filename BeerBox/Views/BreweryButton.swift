@@ -12,7 +12,6 @@ class BreweryButton: UIView {
     private let nameLabel: UILabel = UILabel()
     private let countryLabel: UILabel = UILabel()
     private let titleLabel: UILabel = UILabel()
-//    private let touchView: UIView = UIView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,9 +33,6 @@ class BreweryButton: UIView {
         addSubview(nameLabel)
         addSubview(countryLabel)
         addSubview(titleLabel)
-//        addSubview(touchView)
-
-//        bringSubviewToFront(touchView)
     }
 
     func setTitle(title: String) {

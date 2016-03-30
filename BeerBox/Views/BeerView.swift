@@ -34,6 +34,7 @@ class BeerView: UIScrollView, BreweryButtonDelegate {
         styleLabel.text = beer.style
         ibuLabel.text = "IBU: \(beer.IBU)"
         descriptionLabel.text = beer.descr
+        ratingControl.rating = beer.rating
     }
 
     func setBrewery(brewery: BreweryItem) {
@@ -93,7 +94,6 @@ class BeerView: UIScrollView, BreweryButtonDelegate {
         mainContainerView.addSubview(breweryButtonContainer)
         breweryButtonContainer.addView(breweryButton)
 
-        ratingControl.rating = 4
         ratingControl.settings.starSize = 18
         ratingControl.settings.emptyColor = Colors.disabled
         ratingControl.settings.emptyBorderColor = Colors.disabled
