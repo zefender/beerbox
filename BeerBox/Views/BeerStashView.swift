@@ -39,10 +39,13 @@ class BeerStashView: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         addSubview(stashCollectionView)
         addSubview(emptyLabel)
 
+        backgroundColor = Colors.background
+        
         emptyLabel.hidden = true
         emptyLabel.text = "Your stash is empty."
         emptyLabel.textAlignment = .Center
-        emptyLabel.textColor = UIColor.orangeColor()
+        emptyLabel.font = UIFont(name: "Helvetica", size: 24)
+        emptyLabel.textColor = Colors.tintColor
     }
 
     func showStash(stash: [BeerItem]) {
