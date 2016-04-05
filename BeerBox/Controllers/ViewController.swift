@@ -6,11 +6,18 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController {
+class AlertViewController: UIViewController {
     func showAlertForError(error: Error) {
         let alertController = UIAlertController(title: "Error", message: error.errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
 
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func showCustomAlert(message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 

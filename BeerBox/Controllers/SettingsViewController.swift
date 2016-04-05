@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: ViewController, SettingsViewDelegate {
+class SettingsViewController: AlertViewController, SettingsViewDelegate {
     private let settingsView = SettingsView(frame: UIScreen.mainScreen().bounds)
     private let sortTypes = [SortBy.ByDate, SortBy.ByName]
 

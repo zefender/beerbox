@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SearchViewController: ViewController, SearchViewDelegate, SearchResultViewDelegate {
+class SearchViewController: AlertViewController, SearchViewDelegate, SearchResultViewDelegate {
     private let searchResultView = SearchResultView(frame: UIScreen.mainScreen().bounds)
     private var beers = [BeerItem]()
     private var searchButton: UIBarButtonItem!
@@ -74,7 +74,12 @@ class SearchViewController: ViewController, SearchViewDelegate, SearchResultView
             } else {
                 if let beers = beers {
                     self?.beers = beers
-                    self?.showBeers(beers)
+                    
+                    if beers.count > 0 {
+                        self?.showBeers(beers)
+                    } else {
+                        self?.showCustomAlert("Seems this beer not brewed yet")
+                    }
                 }
             }
 

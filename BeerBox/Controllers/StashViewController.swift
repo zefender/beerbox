@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class StashViewController: ViewController, BeerStashViewDelegate, BeerViewControllerDelegate {
+class StashViewController: AlertViewController, BeerStashViewDelegate, BeerViewControllerDelegate {
     private let stashView = BeerStashView(frame: UIScreen.mainScreen().bounds)
     private var stash: [BeerItem]?
 
