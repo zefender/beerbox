@@ -179,6 +179,8 @@ class DataManager {
                 }
                 
                 completionHandler(parsed, Error(error: nil))
+            } else {
+                completionHandler(nil, error)
             }
         }
     }

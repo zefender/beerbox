@@ -70,7 +70,7 @@ class SearchViewController: AlertViewController, SearchViewDelegate, SearchResul
             self?.searchResultView.state = .Normal
 
             if error.hasError {
-                self?.showAlertForError(error)
+                self?.showCustomAlert("Fail To Search Beers")
             } else {
                 if let beers = beers {
                     self?.beers = beers
