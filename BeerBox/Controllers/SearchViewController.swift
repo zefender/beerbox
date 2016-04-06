@@ -98,7 +98,7 @@ class SearchViewController: AlertViewController, SearchViewDelegate, SearchResul
             self?.searchResultView.state = .Normal
 
             if error.hasError {
-                self?.showAlertForError(error)
+                self?.showCustomAlert("Fail To Add Beer To Stash")
             } else {
                 self?.searchResultView.endAddingToStash()
             }

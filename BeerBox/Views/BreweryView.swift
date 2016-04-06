@@ -12,11 +12,31 @@ import CoreLocation
 
 protocol BreweryViewDelegate: class {
     func breweryViewDidTriggerCloseAction(view: BreweryView)
+    func breweryViewDidFailToLoadMap(view: BreweryView)
+    func breweryViewDidFinishLoadingMap(view: BreweryView)
+    func breweryViewWillLoadMap(view: BreweryView)
 }
 
 
 class BreweryView: UIView, MKMapViewDelegate {
     weak var delegate: BreweryViewDelegate?
+    
+    var state: FetchingViewState = .Normal {
+        didSet {
+            switch state {
+            case .Normal:
+                dimmedView.fadeOut {
+                    finished in
+                    self.spinnerView.stopAnimating()
+                }
+            case .Loading:
+                dimmedView.fadeIn {
+                    finished in
+                    self.spinnerView.startAnimating()
+                }
+            }
+        }
+    }
 
     private var brewery: BreweryItem?
 
@@ -30,6 +50,9 @@ class BreweryView: UIView, MKMapViewDelegate {
     private let descrLabel: UILabel = UILabel()
     private let breweryImage: UIImageView = UIImageView()
     private let ratingControl: CosmosView = CosmosView()
+    
+    private let dimmedView: UIView = UIView()
+    private let spinnerView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     private let mapView: MKMapView = MKMapView()
 
@@ -80,6 +103,8 @@ class BreweryView: UIView, MKMapViewDelegate {
         addSubview(closeButton)
         addSubview(mainContainer)
         addSubview(imageContainer)
+        addSubview(dimmedView)
+        dimmedView.addSubview(spinnerView)
         imageContainer.addView(breweryImage)
         imageContainer.addView(ratingControl)
         mainContainer.addView(mapContainer)
@@ -133,6 +158,11 @@ class BreweryView: UIView, MKMapViewDelegate {
 
         contentContainer.contentSize = CGSize(width: mainContainer.width, height:
         descrLabel.bottom + 24)
+        
+        dimmedView.frame = bounds
+        
+        spinnerView.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        spinnerView.center = center
     }
 
     func setBrewery(brewery: BreweryItem) {
@@ -153,11 +183,21 @@ class BreweryView: UIView, MKMapViewDelegate {
     }
 
     func mapViewDidFinishLoadingMap(mapView: MKMapView) {
+        delegate?.breweryViewDidFinishLoadingMap(self)
+        
         if let brewery = brewery {
             var center = CLLocationCoordinate2D(latitude: brewery.lat, longitude: brewery.lon)
             center.latitude += mapView.region.span.latitudeDelta * 0.4;
             mapView.setCenterCoordinate(center, animated: false)
         }
+    }
+    
+    func mapViewDidFailLoadingMap(mapView: MKMapView, withError error: NSError) {
+        delegate?.breweryViewDidFailToLoadMap(self)
+    }
+    
+    func mapViewWillStartLoadingMap(mapView: MKMapView) {
+        delegate?.breweryViewWillLoadMap(self)
     }
 
 

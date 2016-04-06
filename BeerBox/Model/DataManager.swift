@@ -18,7 +18,9 @@ class DataManager {
             // load beer's details
             fetchBeerWithId(beerId) {
                 fetchedBeer, error in
-                if let beer = fetchedBeer {
+                if error.hasError {
+                    completion(error)
+                } else if let beer = fetchedBeer {
                     // Do we have brewery for beer?
                     if !self.coreDataSource.breweryIsStored(beer.breweryId) {
                         // load and save the brewery

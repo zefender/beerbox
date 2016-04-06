@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 
-class BreweryViewController: UIViewController, BreweryViewDelegate {
+class BreweryViewController: AlertViewController, BreweryViewDelegate {
     private let breweryView: BreweryView = BreweryView()
 
     var breweryId: Int?
@@ -31,6 +31,19 @@ class BreweryViewController: UIViewController, BreweryViewDelegate {
 
     func breweryViewDidTriggerCloseAction(view: BreweryView) {
          dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func breweryViewDidFailToLoadMap(view: BreweryView) {
+        breweryView.state = .Normal
+        showCustomAlert("Fail To Load Map!")
+    }
+    
+    func breweryViewDidFinishLoadingMap(view: BreweryView) {
+        breweryView.state = .Normal
+    }
+    
+    func breweryViewWillLoadMap(view: BreweryView) {
+        breweryView.state = .Loading
     }
 
     override func prefersStatusBarHidden() -> Bool {

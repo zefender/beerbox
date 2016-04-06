@@ -14,7 +14,7 @@ class APIClient {
     private let endPoint = "https://api.untappd.com/v4"
 
     func sendRequest(request: Request, completionHandler: (NSData?, Error) -> Void) {
-        let urlString = "\(endPoint)/\(request.method())?client_id=\(clientID)&client_secret=\(clientSecret)&\(request.queryString())"
+        let urlString = "\(endPoint)/\(request.method())?client_id=\(clientID)&client_secret=\(clientSecret)&\(request.queryString().stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)"
 
         if let url = NSURL(string: urlString) {
             let httpRequest = NSMutableURLRequest(URL: url)

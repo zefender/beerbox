@@ -10,7 +10,7 @@ protocol SearchResultViewDelegate: class {
     func searchResultView(view: SearchResultView, didTriggerStashActionForIndex index: Int)
 }
 
-enum SearchViewState {
+enum FetchingViewState {
     case Loading, Normal
 }
 
@@ -24,7 +24,7 @@ class SearchResultView: UIView, UITableViewDataSource, UITableViewDelegate {
     private let dimmedView: UIView = UIView()
     private let spinnerView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
 
-    var state: SearchViewState = .Normal {
+    var state: FetchingViewState = .Normal {
         didSet {
             switch state {
             case .Normal:
